@@ -19,7 +19,7 @@ const app = express();
 
 
 // make bundled final project source files accessable
-app.use(c.route.dist, express.static(c.path.dist));
+app.use(c.ROUTE_DIST, express.static(c.PATH_DIST));
 
 // load static files
 app.use(express.static(path.resolve(process.cwd(), 'public'), {maxage: '7d'}));
