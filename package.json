@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "NODE_ENV=development node ./provider/server.development.js",
         "build": "NODE_ENV=production webpack --config ./provider/webpack.production.js --debug --progress --display-error-details --profile --colors",
+        "node": "NODE_ENV=production node ./provider/server.production.js",
         "serv": "NODE_ENV=production pm2 start ./provider/server.production.js --name RSSR",
         "up": "pm2 delete RSSR & npm run serv",
         "lint": "eslint src",
