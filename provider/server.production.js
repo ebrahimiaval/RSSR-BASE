@@ -22,7 +22,7 @@ const app = express();
 app.use(c.ROUTE_DIST, express.static(c.PATH_DIST));
 
 // load static files
-app.use(express.static(path.resolve(process.cwd(), 'public'), {maxage: '7d'}));
+app.use(express.static(path.resolve(process.cwd(), 'public')));
 
 // Redirect from www to non-www and remove slash at the end of URL
 seoOptimization(app);

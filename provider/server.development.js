@@ -32,7 +32,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 // static files
-app.use(express.static(path.resolve(process.cwd(), './public'), {maxage: '7d'}));
+app.use(express.static(path.resolve(process.cwd(), './public')));
 
 // recompile webpack when file changes
 app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
