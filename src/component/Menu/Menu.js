@@ -7,7 +7,7 @@ import InvalidUser from "../Auth/InvalidUser";
 import LoadingUser from "../Auth/LoadingUser";
 
 
-const Menu = () => {
+function Menu() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">

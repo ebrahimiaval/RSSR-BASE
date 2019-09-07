@@ -130,12 +130,5 @@ export const clientFetcher = function (TheComponent) {
     }
 
 
-
-
-
-    const mstp = state => ({
-        [stateName]: state[stateName]
-    });
-
-    return connect(mstp)(Fecher);
+    return connect(s => ({[stateName]: s[stateName]}))(Fecher);
 }

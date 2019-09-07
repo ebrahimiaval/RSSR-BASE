@@ -10,10 +10,10 @@ let api = {
     // authentication
     signin: 'http://www.mocky.io/v2/5d70abc13300004d0077933f',
     signup: 'http://www.mocky.io/v2/5d70abc13300004d0077933f',
-    forgetPassword : '/',
+    forgetPassword : 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
     resetPassword: {
-        trust: '/',
-        submit: '/',
+        trust: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
+        submit: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
     },
 
     posts: '/posts',

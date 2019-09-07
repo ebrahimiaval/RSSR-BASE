@@ -16,8 +16,8 @@ import {clientFetcher} from "./clientFetcher";
  * an in redux base is an empty component
  * (need empty component to avoid React 'compoenet not found' error)
  *
- * @param TheComponent: React Component
- * @returns {Fecher} :  Fetcher HOC
+ * TheComponent: React Component
+ * returns {Fecher}:  Fetcher Component
  */
 export const fecher = (TheComponent) => {
     let Fecher;

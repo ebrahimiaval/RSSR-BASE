@@ -1,29 +1,22 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import ForgetPasswordForm from "./ForgetPasswordForm";
 import SignInForm from "./SignInForm";
 import {isSet} from "../../../setup/utility/checkSet";
 
+const SignIn = props => {
+    const [showSignInForm, setShowSignInForm] = useState(true);
 
-class SignIn extends Component {
-    state = {
-        showSignInForm: true
+    function closeModal() {
+        if (isSet(props.notify))
+            props.notify.$modal.modal('hide');
     }
 
-    toggleView = (showSignInForm) => this.setState({showSignInForm: showSignInForm});
-
-    closeModal = () => {
-        if (isSet(this.props.notify))
-            this.props.notify.$modal.modal('hide');
-    }
-
-    render() {
-        return (
-            this.state.showSignInForm ?
-                <SignInForm showForgetPasswordForm={() => this.toggleView(false)} closeModal={this.closeModal}/>
-                :
-                <ForgetPasswordForm showSignInForm={() => this.toggleView(true)} closeModal={this.closeModal}/>
-        )
-    }
-}
+    return (
+        showSignInForm ?
+            <SignInForm showForgetPasswordForm={() => setShowSignInForm(false)} closeModal={closeModal}/>
+            :
+            <ForgetPasswordForm showSignInForm={() => setShowSignInForm(true)} closeModal={closeModal}/>
+    )
+};
 
 export default SignIn;

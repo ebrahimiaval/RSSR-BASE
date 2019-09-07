@@ -11,8 +11,8 @@ import {API_DOMAIN, IS_SERVER} from "../constant";
  * @param userConfig {object}: custom user config
  * @returns {Promise<AxiosResponse<any> | never>}
  */
-export const axios = function (userConfig) {
-    let config = {
+export const axios = function (config) {
+    let finalConfig = {
         // rewire axios default configs
         timeout: 58000,// fix uncontroled server 502 Error
         baseURL: API_DOMAIN,
@@ -22,13 +22,13 @@ export const axios = function (userConfig) {
         token: false,
 
         // custom user config
-        ...userConfig
+        ...config
     }
 
     // insert Authorization token
-    config = tokenProvider(config);
+    finalConfig = tokenProvider(finalConfig);
 
-    return axiosBase(config);
+    return axiosBase(finalConfig);
 }
 
 

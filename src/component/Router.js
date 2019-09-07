@@ -4,7 +4,7 @@ import {routeMap} from "../setup/routeMap";
 import {jumpScrollToTop} from "../setup/utility/jumpScrollToTop";
 
 
-const Router = () => {
+function Router() {
     return (
         <Switch>
             {

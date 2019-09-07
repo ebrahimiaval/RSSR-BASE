@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {connect} from "trim-redux";
 import {withRouter} from "react-router-dom";
 import {toast} from "react-toastify";
@@ -11,25 +11,32 @@ import {signingIn} from "./action/signingIn";
 
 
 
-class SignUp extends Component {
-    state = {
-        isLoading: false,
-        username: '',
-        password: ''
+function SignUp(props) {
+
+    const
+        [isLoading, setIsLoading] = useState(false),
+        [username, setUsername] = useState(''),
+        [password, setPassword] = useState(''),
+        {localUser} = props;
+
+
+
+
+
+    function closeModal() {
+        if (isSet(props.notify))
+            props.notify.$modal.modal('hide');
     }
 
-    closeModal = () => {
-        if (isSet(this.props.notify))
-            this.props.notify.$modal.modal('hide');
-    }
 
-    submitSignUp = (e) => {
+
+
+
+    function submitSignUp(e) {
         if (!formValidation(e))
             return false;
 
-        const {username, password} = this.state;
-
-        this.setState({isLoading: true});
+        setIsLoading(true);
 
         axios({
             url: api.signup,
@@ -41,70 +48,66 @@ class SignUp extends Component {
         })
             .then((response) => {
                 // close modal when launched from modal (Notify modal)
-                this.closeModal();
+                closeModal();
 
                 // set token to localStorage if remember me checked and get user details
                 signingIn(response.data.token, true)
                     .then(function () {
                         toast.success('ثبت نام با موفقیت انجام شد و وارد حساب شدید.');
+                    })
+                    .catch(function () {
+                        toast.success('ثبت نام موفقیت آمیز بود ولی دریافت مشخصات به خطا خورد. با مشخصاتی که ثبت نام کردید برای ورود به حساب تلاش نمایید!');
                     });
             })
             .catch(() => {
-                this.setState({isLoading: false});
+                setIsLoading(false);
                 toast.error('خطا. مجددا تلاش نمایید و در صورت تکرار با پشتیبانی تماس بگیرید.');
             });
     }
 
 
-    render() {
-        const
-            {localUser} = this.props,
-            {isLoading} = this.state;
 
-        return (
 
-            <form
-                className="signup-form"
-                onSubmit={this.submitSignUp}
-                noValidate>
 
-                <div className="form-group">
-                    <label>ایمیل</label>
-                    <input type="text"
-                           className="form-control ltr-value"
-                           aria-describedby="emailHelp"
-                           name="username"
-                           pattern={regexp.email}
-                           value={this.state.username}
-                           onChange={(e) => this.setState({username: e.target.value})}
-                           required/>
-                    <div className="invalid-feedback">ایمیل معتبری درج نشده است!</div>
-                </div>
+    return (
+        <form
+            className="signup-form"
+            onSubmit={submitSignUp}
+            noValidate>
 
-                <div className="form-group">
-                    <label>رمز عبور (حداقل ۸ کاراکتر)</label>
-                    <input type="password"
-                           name="password"
-                           className="form-control ltr-value"
-                           pattern={regexp.password}
-                           value={this.state.password}
-                           onChange={(e) => this.setState({password: e.target.value})}
-                           required/>
-                    <div className="invalid-feedback">رمز عبور باید بیش از ۸ کاراکتر باشد.</div>
-                </div>
+            <div className="form-group">
+                <label>ایمیل</label>
+                <input type="text"
+                       className="form-control ltr-value"
+                       aria-describedby="emailHelp"
+                       name="username"
+                       pattern={regexp.email}
+                       value={username}
+                       onChange={(e) => setUsername(e.target.value)}
+                       required/>
+                <div className="invalid-feedback">ایمیل معتبری درج نشده است!</div>
+            </div>
 
-                <button type="submit"
-                        className={`btn btn-block mt-7 ${(isLoading) ? 'loading-effect' : 'btn-primary'} `}
-                        disabled={isLoading || !localUser.updated}>
-                    ثبت نام
-                </button>
-            </form>
-        );
-    }
+            <div className="form-group">
+                <label>رمز عبور (حداقل ۸ کاراکتر)</label>
+                <input type="password"
+                       name="password"
+                       className="form-control ltr-value"
+                       pattern={regexp.password}
+                       value={password}
+                       onChange={(e) => setPassword(e.target.value)}
+                       required/>
+                <div className="invalid-feedback">رمز عبور باید بیش از ۸ کاراکتر باشد.</div>
+            </div>
+
+            <button type="submit"
+                    className={`btn btn-block mt-7 ${(isLoading) ? 'loading-effect' : 'btn-primary'} `}
+                    disabled={isLoading || !localUser.updated}>
+                ثبت نام
+            </button>
+        </form>
+    );
 }
 
-const mstp = (state) => ({
-    localUser: state.localUser
-})
 
-export default withRouter(connect(mstp)(SignUp));
+export default withRouter(connect(s => ({localUser: s.localUser}))(SignUp));

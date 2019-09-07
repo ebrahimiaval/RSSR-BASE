@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {connect} from "trim-redux";
 import {LOADING_CLASS, regexp} from "../../../setup/constant";
 import {formValidation} from "../../../setup/utility/formValidation";
@@ -8,20 +8,22 @@ import {route} from "../../../setup/route";
 import {toast} from "react-toastify";
 
 
-class ForgetPasswordForm extends Component {
+function ForgetPasswordForm(props) {
 
-    state = {
-        isLoading: false,
-        email: ''
-    }
+    const
+        [isLoading, setIsLoading] = useState(false),
+        [email, setEmail] = useState(''),
+        {localUser, showSignInForm} = props;
 
-    submitForgetPassword = (e) => {
+
+
+
+
+    function submitForgetPassword(e) {
         if (!formValidation(e))
             return false;
 
-        const {email} = this.state;
-
-        this.setState({isLoading: true});
+        setIsLoading(true);
 
         axios({
             url: api.forgetPassword,
@@ -34,13 +36,13 @@ class ForgetPasswordForm extends Component {
         })
             .then(() => {
                 // close the modal when launched from  modal
-                this.props.closeModal();
+                props.closeModal();
 
                 const message = (
                     <div>
                         ایمیل بازیابی ارسال شد.
                         <br/>
-                        برای بازیابی بر روی لینک ارسال شده به ایمیل زیر  کلیک نمایید.
+                        برای بازیابی بر روی لینک ارسال شده به ایمیل زیر کلیک نمایید.
                         <br/>
                         {email}
                         <br/>
@@ -50,7 +52,7 @@ class ForgetPasswordForm extends Component {
                 toast.success(message, {autoClose: false});
             })
             .catch((e) => {
-                this.setState({isLoading: false});
+                setIsLoading(false);
 
                 if (e.status === 400)
                     toast.error('ایمیل معتبر نمی‌باشد!');
@@ -59,38 +61,36 @@ class ForgetPasswordForm extends Component {
             });
     }
 
-    render() {
-        const
-            {localUser, showSignInForm} = this.props,
-            {isLoading, email} = this.state;
 
-        return (
-            <form className="forget-password-form"
-                  onSubmit={this.submitForgetPassword}
-                  noValidate>
-                <div className="d-flex justify-content-between pb-5">
-                    <h5>بازیابی رمز عبور</h5>
-                    <a className="signin-toggle" onClick={() => showSignInForm()}>بازگشت</a>
-                </div>
-                <div className="form-group">
-                    <label>ایمیل خود را وارد نمایید</label>
-                    <input type="text"
-                           className="form-control ltr-value"
-                           name="forgetpassword"
-                           pattern={regexp.email}
-                           value={email}
-                           onChange={(e) => this.setState({email: e.target.value})}
-                           required/>
-                    <div className="invalid-feedback">آدرس ایمیل وارد شده معتبر نیست!</div>
-                </div>
-                <button className={`btn btn-block btn-primary ${(isLoading || !localUser.updated) ? LOADING_CLASS : ''} `}
-                        disabled={isLoading || !localUser.updated}
-                        type="submit">
-                    بازیابی
-                </button>
-            </form>
-        )
-    }
+
+
+
+    return (
+        <form className="forget-password-form"
+              onSubmit={submitForgetPassword}
+              noValidate>
+            <div className="d-flex justify-content-between pb-5">
+                <h5>بازیابی رمز عبور</h5>
+                <a className="signin-toggle" onClick={() => showSignInForm()}>بازگشت</a>
+            </div>
+            <div className="form-group">
+                <label>ایمیل خود را وارد نمایید</label>
+                <input type="text"
+                       className="form-control ltr-value"
+                       name="forgetpassword"
+                       pattern={regexp.email}
+                       value={email}
+                       onChange={(e) => setEmail(e.target.value)}
+                       required/>
+                <div className="invalid-feedback">آدرس ایمیل وارد شده معتبر نیست!</div>
+            </div>
+            <button className={`btn btn-block btn-primary ${(isLoading || !localUser.updated) ? LOADING_CLASS : ''} `}
+                    disabled={isLoading || !localUser.updated}
+                    type="submit">
+                بازیابی
+            </button>
+        </form>
+    )
 }
 
 export default connect(s => ({localUser: s.localUser}))(ForgetPasswordForm);

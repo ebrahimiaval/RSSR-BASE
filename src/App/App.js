@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import {Helmet} from "react-helmet";
 import {ToastContainer} from 'react-toastify';
 import Router from "../component/Router";
@@ -10,26 +10,23 @@ import SignUpModal from "../component/Auth/SignUpModal";
 import "./app.scss";
 
 
-class App extends Component {
-
-    componentDidMount() {
+function App() {
+    useEffect(() => {
         // user Authentication, get cart, set theme and more.
         firstSetup();
-    }
+    }, []);
 
-    render() {
-        return (
-            <Fragment>
-                <FirstLoading/>
-                <Menu/>
-                <Router/>
-                <Helmet defaultTitle="React Server Side Rendering"/>
-                <SignInModal/>
-                <SignUpModal/>
-                <ToastContainer rtl={true}/>
-            </Fragment>
-        )
-    }
-}
+    return (
+        <Fragment>
+            <FirstLoading/>
+            <Menu/>
+            <Router/>
+            <Helmet defaultTitle="React Server Side Rendering"/>
+            <SignInModal/>
+            <SignUpModal/>
+            <ToastContainer rtl={true}/>
+        </Fragment>
+    );
+};
 
 export default App;
