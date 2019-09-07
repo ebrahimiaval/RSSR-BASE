@@ -1,5 +1,7 @@
 // load .env files and define environment varibale before all actions
 require('./setup/evnLoader');
+// define global.FILE_VERSION for dist file version. see render/Index.js template. ::5::
+require('./setup/fileVersion');
 
 const
     open = require('open'),

@@ -4,8 +4,7 @@
  */
 const
     fs = require('fs'),
-    path = require('path'),
-    version = require("../../package").version;
+    path = require('path');
 
 /**
  * Parses a string or buffer into an object
@@ -94,9 +93,6 @@ switch (process.env.NODE_ENV) {
         selectedEnv = path.resolve(ROOT, '.env.test');
         break;
 }
-
-// import app version
-process.env.VERSION = version;
 
 // load .env
 config({path: path.resolve(ROOT, '.env')});
