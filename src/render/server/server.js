@@ -1,5 +1,5 @@
 import als from "async-local-storage";
-import {render} from "./render/render";
+import {render} from "./render";
 import {fetchProvider} from "./fetchProvider";
 import {initialize} from "./initialize";
 

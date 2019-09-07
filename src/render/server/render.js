@@ -4,11 +4,11 @@ import {StaticRouter} from "react-router-dom";
 import als from "async-local-storage";
 import {Helmet} from "react-helmet";
 import {Provider} from "react-redux";
-import {createStore, defaultState} from "../../../setup/store";
-import App from "../../../App/App";
-import {errorLogger} from "../../../setup/utility/errorLogger";
-import Template from "./Template";
-import ProcessError from "./ProcessError";
+import {createStore, defaultState} from "../../setup/store";
+import App from "../../App/App";
+import {errorLogger} from "../../setup/utility/errorLogger";
+import Index from "../Template/Index";
+import Error from "../Template/Error";
 
 
 
@@ -35,7 +35,7 @@ export const render = function (error, req, res, timerStart) {
     } else {
         errorLogger('server.js', timerStart, error, false, req); // log to console
 
-        app = <ProcessError error={error}/>
+        app = <Error error={error}/>
     }
 
     const renderedApp = ReactDOMServer.renderToString(app);
@@ -45,7 +45,7 @@ export const render = function (error, req, res, timerStart) {
         const status = !error ? (als.get('status') || 500) : 500;
 
         // make HTML response
-        let response = <Template renderedApp={renderedApp} helmet={helmet} error={error}/>;
+        let response = <Index renderedApp={renderedApp} helmet={helmet} error={error}/>;
         response = ReactDOMServer.renderToString(response);
         response = '<!DOCTYPE html>' + response;
 

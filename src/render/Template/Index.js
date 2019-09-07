@@ -3,7 +3,7 @@ import serialize from "serialize-javascript";
 import als from "async-local-storage";
 
 
-export default function (props) {
+function Index (props) {
     const
         {renderedApp, helmet, error} = props,
         htmlAttrs = helmet.htmlAttributes.toComponent(),
@@ -30,15 +30,17 @@ export default function (props) {
             {helmet.meta.toComponent()}
             {helmet.link.toComponent()}
             <link rel="shortcut icon" href="/fav.ico" type="image/icon"/>
-            <link rel="stylesheet" href={`/dist/styles.css?v=${process.env.VERSION}`}/>
+            <link rel="stylesheet" href={`/dist/styles.css${global.FILE_VERSION /*::5::*/}`}/>
         </head>
         <body className="rtl" {...bodyAttrs}>
             <div id="app-root" dangerouslySetInnerHTML={{__html: renderedApp}}></div>
             {
                 dataTransfer ? <script dangerouslySetInnerHTML={{__html: dataTransfer}}/> : ''
             }
-            <script src={`/dist/client.js?v=${process.env.VERSION}`}></script>
+            <script src={`/dist/client.js${global.FILE_VERSION /*::5::*/}`}></script>
         </body>
         </html>
     );
 }
+
+export default Index;
