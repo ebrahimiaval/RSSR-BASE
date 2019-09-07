@@ -3,7 +3,7 @@ import serialize from "serialize-javascript";
 import als from "async-local-storage";
 
 
-export default function (props) {
+function Index (props) {
     const
         {renderedApp, helmet, error} = props,
         htmlAttrs = helmet.htmlAttributes.toComponent(),
@@ -42,3 +42,5 @@ export default function (props) {
         </html>
     );
 }
+
+export default Index;

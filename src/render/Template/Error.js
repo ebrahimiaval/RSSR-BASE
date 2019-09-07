@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 
-const ProcessError = props => {
+function Error(props) {
     const isDevEnv = process.env.NODE_ENV === 'development';
 
     return (
@@ -29,4 +29,4 @@ const ProcessError = props => {
 }
 
 
-export default ProcessError;
+export default Error;
