@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {connect} from "trim-redux";
 import {withRouter} from "react-router-dom";
 import {toast} from "react-toastify";
-import {formValidation} from "../../setup/utility/formValidation";
 import {regexp} from "../../setup/constant";
 import {axios} from "../../setup/utility/axios";
 import {api} from "../../setup/api";
 import {isSet} from "../../setup/utility/checkSet";
 import {signingIn} from "./action/signingIn";
+import Form from "../Form";
 
 
 
@@ -32,10 +32,7 @@ function SignUp(props) {
 
 
 
-    function submitSignUp(e) {
-        if (!formValidation(e))
-            return false;
-
+    function submitSignUp() {
         setIsLoading(true);
 
         axios({
@@ -70,11 +67,7 @@ function SignUp(props) {
 
 
     return (
-        <form
-            className="signup-form"
-            onSubmit={submitSignUp}
-            noValidate>
-
+        <Form onSubmit={submitSignUp} className="signup-form">
             <div className="form-group">
                 <label>ایمیل</label>
                 <input type="text"
@@ -105,7 +98,7 @@ function SignUp(props) {
                     disabled={isLoading || !localUser.updated}>
                 ثبت نام
             </button>
-        </form>
+        </Form>
     );
 }
 

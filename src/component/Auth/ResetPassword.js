@@ -3,9 +3,9 @@ import {toast} from 'react-toastify';
 import {axios} from "../../setup/utility/axios";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
-import {formValidation} from "../../setup/utility/formValidation";
 import {regexp} from "../../setup/constant";
 import {browserHistory} from "../../setup/browserHistory";
+import Form from "../Form";
 
 
 
@@ -44,10 +44,7 @@ function ResetPassword(props) {
 
 
 
-    function submitForm(e) {
-        if (!formValidation(e))
-            return false;
-
+    function submitForm() {
         axios({
             url: api.resetPassword.submit,
             method: 'POST',
@@ -77,9 +74,7 @@ function ResetPassword(props) {
                     {
                         (viewMod === 'form') ?
                             (
-                                <form onSubmit={submitForm}
-                                      noValidate>
-
+                                <Form onSubmit={submitForm}>
                                     <div className="form-group">
                                         <label>رمز عبور جدید</label>
                                         <input name="newPassword"
@@ -105,7 +100,7 @@ function ResetPassword(props) {
                                     </div>
 
                                     <button className="btn btn-primary mt-4" type="submit">ثبت</button>
-                                </form>
+                                </Form>
                             )
                             :
                             (

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {toast} from "react-toastify";
-import {formValidation} from "../../../setup/utility/formValidation";
 import {axios} from "../../../setup/utility/axios";
 import {api} from "../../../setup/api";
 import {signingIn} from "../action/signingIn";
 import {LOADING_CLASS, regexp} from "../../../setup/constant";
 import {random} from "../../../setup/utility/random";
 import {connect} from "trim-redux";
+import Form from "../../Form";
 
 function SignInForm(props) {
 
@@ -20,10 +20,7 @@ function SignInForm(props) {
 
 
 
-    function submitSignIn(e) {
-        if (!formValidation(e))
-            return false;
-
+    function submitSignIn() {
         setIsLoading(true);
 
         axios({
@@ -51,14 +48,8 @@ function SignInForm(props) {
     }
 
 
-
-
-
     return (
-        <form className="signin-form"
-              onSubmit={submitSignIn}
-              noValidate>
-
+        <Form onSubmit={submitSignIn} className="signin-form">
             <div className="form-group">
                 <label>ایمیل</label>
                 <input type="text"
@@ -106,7 +97,7 @@ function SignInForm(props) {
                     type="submit">
                 ورود
             </button>
-        </form>
+        </Form>
     );
 }
 

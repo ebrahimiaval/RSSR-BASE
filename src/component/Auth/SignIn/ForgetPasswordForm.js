@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {connect} from "trim-redux";
 import {LOADING_CLASS, regexp} from "../../../setup/constant";
-import {formValidation} from "../../../setup/utility/formValidation";
 import {axios} from "../../../setup/utility/axios";
 import {api} from "../../../setup/api";
 import {route} from "../../../setup/route";
 import {toast} from "react-toastify";
+import Form from "../../Form";
 
 
 function ForgetPasswordForm(props) {
@@ -19,10 +19,7 @@ function ForgetPasswordForm(props) {
 
 
 
-    function submitForgetPassword(e) {
-        if (!formValidation(e))
-            return false;
-
+    function submitForgetPassword() {
         setIsLoading(true);
 
         axios({
@@ -66,9 +63,7 @@ function ForgetPasswordForm(props) {
 
 
     return (
-        <form className="forget-password-form"
-              onSubmit={submitForgetPassword}
-              noValidate>
+        <Form onSubmit={submitForgetPassword} className="forget-password-form">
             <div className="d-flex justify-content-between pb-5">
                 <h5>بازیابی رمز عبور</h5>
                 <a className="signin-toggle" onClick={() => showSignInForm()}>بازگشت</a>
@@ -89,7 +84,7 @@ function ForgetPasswordForm(props) {
                     type="submit">
                 بازیابی
             </button>
-        </form>
+        </Form>
     )
 }
 
