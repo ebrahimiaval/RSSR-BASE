@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import "../setup/style/bootstrap/bootstrap.scss";
 import "../setup/utility/samplejQueryPlugin";
 import "../setup/style/animate.scss";
+import "../setup/style/limitedResonsive.scss";
 
 // ::4::
 if (!window.RSSR_PROCCESS_ERROR) {

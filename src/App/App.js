@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {Helmet} from "react-helmet";
 import {ToastContainer} from 'react-toastify';
 import Router from "../component/Router";
