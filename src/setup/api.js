@@ -10,14 +10,15 @@ let api = {
     // authentication
     signin: 'http://www.mocky.io/v2/5d70abc13300004d0077933f',
     signup: 'http://www.mocky.io/v2/5d70abc13300004d0077933f',
+    userDetails: 'http://www.mocky.io/v2/5d70aee23300005a00779357',
     forgetPassword : 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
     resetPassword: {
         trust: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
         submit: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
     },
 
+    // other APIs
     posts: '/posts',
-    userDetails: 'http://www.mocky.io/v2/5d70aee23300005a00779357',
     post: (id) => '/posts/' + id,
 }
 
