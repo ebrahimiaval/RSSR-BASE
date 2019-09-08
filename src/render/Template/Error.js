@@ -15,12 +15,12 @@ function Error(props) {
                     </div>
                     : ''
             }
-            <div className="alert alert-danger text-right" dir="ltr">
+            <div className="alert alert-danger text-left" dir="ltr">
                 {props.error.message}
             </div>
             {
                 isDevEnv ?
-                    <pre className="px-3 text-right">{props.error.stack}</pre>
+                    <pre className="px-3 text-left">{props.error.stack}</pre>
                     :
                     <script dangerouslySetInnerHTML={{__html: 'console.log(`' + JSON.stringify(props.error.stack) + '`)'}}/>
             }
