@@ -5,6 +5,10 @@
  * @param response
  */
 export const responseValidation = function (response) {
+    // response not found
+    if (typeof response === "undefined")
+        throw new Error("⛔ invalid fetch() response. response is undefined. response must be an object with 'status' and 'data' property.");
+
     // exist data and status
     if (!response.hasOwnProperty('data') || !response.hasOwnProperty('status'))
         throw new Error('⛔ invalid fetch() response. check axios returns, "data" and "status" is required properties in response.');
