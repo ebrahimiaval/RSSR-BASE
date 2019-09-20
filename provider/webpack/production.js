@@ -1,13 +1,19 @@
 require('../setup/evnLoader'); // load .env files and define environment varibale before all actions
 
-const   webpack = require('webpack');
-const   Dotenv = require('dotenv-webpack');
-const   StatsPlugin = require('stats-webpack-plugin');
-const   UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const   CleanWebpackPlugin = require('clean-webpack-plugin');
-const   MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const   OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const   c = require('../setup/constant');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
+const StatsPlugin = require('stats-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const CLIENT_NAME = require('../setup/constant').CLIENT_NAME;
+const SCSS_PATH = require('../setup/constant').SCSS_PATH;
+const CLIENT_PATH = require('../setup/constant').CLIENT_PATH;
+const SERVER_PATH = require('../setup/constant').SERVER_PATH;
+const SERVER_NAME = require('../setup/constant').SERVER_NAME;
+const DIST_PATH = require('../setup/constant').DIST_PATH;
 
 
 
@@ -18,11 +24,11 @@ module.exports = [
         mode: 'production',
         target: 'web',
         performance: {hints: false},
-        entry: c.PATH_CLIENT,
+        entry: CLIENT_PATH,
         output: {
-            path: c.PATH_DIST,
-            filename: c.NAME_CLIENT,
-            publicPath: c.PATH_DIST,
+            path: DIST_PATH,
+            filename: CLIENT_NAME,
+            publicPath: DIST_PATH,
         },
         module: {
             rules: [
@@ -55,7 +61,7 @@ module.exports = [
                             options: {
                                 // sourceMap: true,
                                 outputStyle: 'compressed',
-                                includePaths: [c.PATH_SCSS]
+                                includePaths: [SCSS_PATH]
                             }
                         }
                     ]
@@ -117,12 +123,12 @@ module.exports = [
         mode: 'production',
         target: 'node',
         performance: {hints: false},
-        entry: c.PATH_SERVER,
+        entry: SERVER_PATH,
         output: {
-            path: c.PATH_DIST,
-            filename: c.NAME_SERVER,
+            path: DIST_PATH,
+            filename: SERVER_NAME,
             libraryTarget: 'commonjs2',
-            publicPath: c.PATH_DIST,
+            publicPath: DIST_PATH,
         },
         module: {
             rules: [
@@ -155,7 +161,7 @@ module.exports = [
                             options: {
                                 // sourceMap: true,
                                 outputStyle: 'compressed',
-                                includePaths: [c.PATH_SCSS]
+                                includePaths: [SCSS_PATH]
                             }
                         }
                     ]

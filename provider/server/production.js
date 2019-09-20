@@ -11,7 +11,8 @@ const serverRendererPath = path.resolve(process.cwd(), './dist/server.js');
 const serverRenderer = require(serverRendererPath).default;
 const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json');
 const stats = require(clientStatsPath);
-const c = require('../setup/constant');
+const DIST_ROUTE = require('../setup/constant').DIST_ROUTE;
+const DIST_PATH = require('../setup/constant').DIST_PATH;
 
 
 // express app
@@ -20,7 +21,7 @@ const app = express();
 
 
 // make bundled final project source files accessable
-app.use(c.ROUTE_DIST, express.static(c.PATH_DIST));
+app.use(DIST_ROUTE, express.static(DIST_PATH));
 
 // load static files
 app.use(express.static(path.resolve(process.cwd(), 'public')));

@@ -1,7 +1,12 @@
-const    webpack = require('webpack');
-const   Dotenv = require('dotenv-webpack');
-const   MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const   c = require('../setup/constant');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CLIENT_NAME = require('../setup/constant').CLIENT_NAME;
+const DIST_ROUTE = require('../setup/constant').DIST_ROUTE;
+const SCSS_PATH = require('../setup/constant').SCSS_PATH;
+const CLIENT_PATH = require('../setup/constant').CLIENT_PATH;
+const SERVER_PATH = require('../setup/constant').SERVER_PATH;
+const SERVER_NAME = require('../setup/constant').SERVER_NAME;
 
 
 //?quiet=true
@@ -12,10 +17,10 @@ module.exports = [
         mode: 'development',
         target: 'web',
         devtool: 'source-map',
-        entry: ['webpack-hot-middleware/client?name=client&reload=true', c.PATH_CLIENT],
+        entry: ['webpack-hot-middleware/client?name=client&reload=true', CLIENT_PATH],
         output: {
-            filename: c.NAME_CLIENT,
-            publicPath: c.ROUTE_DIST,
+            filename: CLIENT_NAME,
+            publicPath: DIST_ROUTE,
         },
         module: {
             rules: [
@@ -50,7 +55,7 @@ module.exports = [
                             options: {
                                 sourceMap: true,
                                 outputStyle: 'compressed',
-                                includePaths: [c.PATH_SCSS]
+                                includePaths: [SCSS_PATH]
                             }
                         }
                     ]
@@ -87,11 +92,11 @@ module.exports = [
         mode: 'development',
         target: 'node',
         devtool: 'source-map',
-        entry: ['webpack-hot-middleware/client?name=server&reload=true', c.PATH_SERVER],
+        entry: ['webpack-hot-middleware/client?name=server&reload=true', SERVER_PATH],
         output: {
-            filename: c.NAME_SERVER,
+            filename: SERVER_NAME,
             libraryTarget: 'commonjs2',
-            publicPath: c.ROUTE_DIST,
+            publicPath: DIST_ROUTE,
         },
         module: {
             rules: [
@@ -123,7 +128,7 @@ module.exports = [
                             options: {
                                 sourceMap: true,
                                 outputStyle: 'compressed',
-                                includePaths: [c.PATH_SCSS]
+                                includePaths: [SCSS_PATH]
                             }
                         }
                     ]
