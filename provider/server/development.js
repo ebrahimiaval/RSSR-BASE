@@ -1,21 +1,18 @@
 // load .env files and define environment varibale before all actions
-require('./setup/evnLoader');
+require('../setup/evnLoader');
 // define global.FILE_VERSION for dist file version. see render/Index.js template. ::5::
-require('./setup/fileVersion');
+require('../setup/fileVersion');
 
-const
-    open = require('open'),
-    path = require('path'),
-    express = require('express'),
-    // webpack
-    webpack = require('webpack'),
-    config = require('./webpack.development'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware'),
-    webpackHotServerMiddleware = require('webpack-hot-server-middleware'),
-    //
-    c = require('./setup/constant'),
-    devServerIsReady = require('./setup/devServerIsReady');
+const open = require('open');
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const config = require('../webpack/development');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const c = require('../setup/constant');
+const devServerIsReady = require('../setup/devServerIsReady');
 
 
 

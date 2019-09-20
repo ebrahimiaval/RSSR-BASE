@@ -1,14 +1,13 @@
-require('./setup/evnLoader'); // load .env files and define environment varibale before all actions
-const
-    path = require('path'),
-    webpack = require('webpack'),
-    Dotenv = require('dotenv-webpack'),
-    StatsPlugin = require('stats-webpack-plugin'),
-    UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
-    CleanWebpackPlugin = require('clean-webpack-plugin'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-    OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
-    c = require('./setup/constant');
+require('../setup/evnLoader'); // load .env files and define environment varibale before all actions
+
+const   webpack = require('webpack');
+const   Dotenv = require('dotenv-webpack');
+const   StatsPlugin = require('stats-webpack-plugin');
+const   UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const   CleanWebpackPlugin = require('clean-webpack-plugin');
+const   MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const   OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const   c = require('../setup/constant');
 
 
 

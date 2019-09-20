@@ -1,8 +1,7 @@
-const
-    webpack = require('webpack'),
-    Dotenv = require('dotenv-webpack'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-    c = require('./setup/constant');
+const    webpack = require('webpack');
+const   Dotenv = require('dotenv-webpack');
+const   MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const   c = require('../setup/constant');
 
 
 //?quiet=true

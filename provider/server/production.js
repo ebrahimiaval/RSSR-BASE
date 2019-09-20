@@ -1,18 +1,17 @@
 // load .env files and define environment varibale before all actions
-require('./setup/evnLoader');
+require('../setup/evnLoader');
 // define global.FILE_VERSION for dist file version. see render/Index.js template. ::5::
-require('./setup/fileVersion');
+require('../setup/fileVersion');
 
-const
-    path = require('path'),
-    seoOptimization = require('./setup/seoOptimization'),
-    rateLimit = require('./setup/rateLimit'),
-    express = require('express'),
-    serverRendererPath = path.resolve(process.cwd(), './dist/server.js'),
-    serverRenderer = require(serverRendererPath).default,
-    clientStatsPath = path.resolve(process.cwd(), './dist/stats.json'),
-    stats = require(clientStatsPath),
-    c = require('./setup/constant');
+const path = require('path');
+const seoOptimization = require('../setup/seoOptimization');
+const rateLimit = require('../setup/rateLimit');
+const express = require('express');
+const serverRendererPath = path.resolve(process.cwd(), './dist/server.js');
+const serverRenderer = require(serverRendererPath).default;
+const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json');
+const stats = require(clientStatsPath);
+const c = require('../setup/constant');
 
 
 // express app
