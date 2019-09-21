@@ -42,7 +42,7 @@ function SignInForm(props) {
                     });
             })
             .catch(() => {
-                this.setState({isLoading: false});
+                setIsLoading(true);
                 toast.error('نام کاربری یا رمز عبور اشتباه است!');
             });
     }
