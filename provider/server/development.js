@@ -12,8 +12,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const devServerIsReady = require('../setup/devServerIsReady');
+const {DIST_ROUTE} = require('../setup/constant');
 
-const DIST_ROUTE = require('../setup/constant').DIST_ROUTE;
 
 
 

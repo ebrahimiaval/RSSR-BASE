@@ -11,8 +11,8 @@ const serverRendererPath = path.resolve(process.cwd(), './dist/server.js');
 const serverRenderer = require(serverRendererPath).default;
 const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json');
 const stats = require(clientStatsPath);
-const DIST_ROUTE = require('../setup/constant').DIST_ROUTE;
-const DIST_PATH = require('../setup/constant').DIST_PATH;
+const {DIST_PATH, DIST_ROUTE} = require('../setup/constant');
+
 
 
 // express app

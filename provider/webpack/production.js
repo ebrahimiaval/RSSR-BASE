@@ -7,14 +7,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const CLIENT_NAME = require('../setup/constant').CLIENT_NAME;
-const SCSS_PATH = require('../setup/constant').SCSS_PATH;
-const CLIENT_PATH = require('../setup/constant').CLIENT_PATH;
-const SERVER_PATH = require('../setup/constant').SERVER_PATH;
-const SERVER_NAME = require('../setup/constant').SERVER_NAME;
-const DIST_PATH = require('../setup/constant').DIST_PATH;
-
+const {CLIENT_NAME, DIST_PATH, SCSS_PATH, CLIENT_PATH, SERVER_PATH, SERVER_NAME} = require('../setup/constant');
 
 
 module.exports = [

@@ -1,12 +1,7 @@
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CLIENT_NAME = require('../setup/constant').CLIENT_NAME;
-const DIST_ROUTE = require('../setup/constant').DIST_ROUTE;
-const SCSS_PATH = require('../setup/constant').SCSS_PATH;
-const CLIENT_PATH = require('../setup/constant').CLIENT_PATH;
-const SERVER_PATH = require('../setup/constant').SERVER_PATH;
-const SERVER_NAME = require('../setup/constant').SERVER_NAME;
+const {CLIENT_NAME, DIST_ROUTE, SCSS_PATH, CLIENT_PATH, SERVER_PATH, SERVER_NAME} = require('../setup/constant');
 
 
 //?quiet=true
