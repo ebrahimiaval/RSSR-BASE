@@ -5,7 +5,7 @@ import {axios} from "../../../setup/utility/axios";
 import {api} from "../../../setup/api";
 import {route} from "../../../setup/route";
 import {toast} from "react-toastify";
-import Form from "../../../Component/Form/Form";
+import Form from "../../../Partial/Form/Form";
 
 
 function ForgetPasswordForm(props) {

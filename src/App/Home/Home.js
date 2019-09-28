@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {axios} from "../../setup/utility/axios";
-import {fecher} from "../../component/fetcher/fetcher";
+import {fecher} from "../../Partial/fetcher/fetcher";
 import "./home.scss";
 
 

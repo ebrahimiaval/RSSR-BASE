@@ -5,7 +5,7 @@ import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {regexp} from "../../setup/constant";
 import {browserHistory} from "../../setup/browserHistory";
-import Form from "../../Component/Form/Form";
+import Form from "../../Partial/Form/Form";
 
 
 
