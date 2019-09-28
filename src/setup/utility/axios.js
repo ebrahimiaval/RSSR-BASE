@@ -11,6 +11,28 @@ import {API_DOMAIN, IS_SERVER} from "../constant";
  * @param userConfig {object}: custom user config
  * @returns {Promise<AxiosResponse<any> | never>}
  */
+/************************* template *************************
+
+     axios({
+            url: api.test,
+            method: 'POST',
+            token: true, // for need auth actions
+            data: {
+                test: 'test' // your data params
+            }
+        })
+         .then((response) => {
+                //  transpile actions
+                return response; // required for fetch()
+            })
+         .catch(function (e) {
+                // if (e.status === 400)
+                //    toast.error('your custom error');
+                // else
+                //    toast.error('خطا.اتصال اینترنت خود را بررسی نماید و مجددا تلاش نمایید و در صورت تکرار با پشتیبانی تماس بگیرید.', {autoClose: 8000});
+            })
+
+ ***************************************************************/
 export const axios = function (config) {
     let finalConfig = {
         // rewire axios default configs
