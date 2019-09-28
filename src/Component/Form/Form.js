@@ -1,5 +1,5 @@
 import React from 'react';
-import {formValidation} from "../setup/utility/formValidation";
+import {formValidation} from "../../setup/utility/formValidation";
 
 const Form = (theProps) => {
     const props = {...theProps};

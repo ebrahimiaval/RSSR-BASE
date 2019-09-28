@@ -1,12 +1,12 @@
 import React, {Fragment, useEffect} from 'react';
 import {Helmet} from "react-helmet";
 import {ToastContainer} from 'react-toastify';
-import Router from "../component/Router";
-import Menu from "../component/Menu/Menu";
-import FirstLoading from "../component/FirstLoading";
-import {firstSetup} from "../component/Auth/action/firstSetup";
-import SignInModal from "../component/Auth/SignInModal";
-import SignUpModal from "../component/Auth/SignUpModal";
+import Router from "../Component/Router/Router";
+import Menu from "../Partial/Menu/Menu";
+import FirstLoading from "../Partial/FirstLoading/FirstLoading";
+import {firstSetup} from "../Partial/Auth/action/firstSetup";
+import SignInModal from "../Partial/Auth/SignInModal";
+import SignUpModal from "../Partial/Auth/SignUpModal";
 import "./app.scss";
 
 

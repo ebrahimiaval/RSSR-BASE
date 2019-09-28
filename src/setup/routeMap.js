@@ -1,7 +1,7 @@
 import Error404 from "../App/Error404/Error404";
 import Home from "../App/Home/Home";
 import Post from "../App/Post/Post";
-import ResetPassword from "../component/Auth/ResetPassword";
+import ResetPassword from "../Partial/Auth/ResetPassword";
 import {route} from "./route";
 
 

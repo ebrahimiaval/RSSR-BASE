@@ -1,5 +1,5 @@
 import React from 'react';
-import Notify from "../Notify/Notify";
+import Notify from "../../Component/Notify/Notify";
 import SignIn from "./SignIn/SignIn";
 
 const SignInModal = () => {
