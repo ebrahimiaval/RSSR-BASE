@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {axios} from "../../setup/utility/axios";
-import {fecher} from "../../Partial/fetcher/fetcher";
+import {fetcher} from "../../Partial/fetcher/fetcher";
 import "./home.scss";
 
 
@@ -57,4 +57,4 @@ Home.fetch = function () {
     return axios({url: api.posts})
 }
 
-export default fecher(Home);
+export default fetcher(Home);

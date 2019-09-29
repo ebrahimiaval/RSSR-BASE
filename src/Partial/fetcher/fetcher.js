@@ -5,7 +5,7 @@ import {clientFetcher} from "./clientFetcher";
 
 
 /**
- * fecher is a HOC provider
+ * fetcher is a HOC provider
  *
  * Fetcher is a HOC and wrap 'TheComponent'
  * to can handel fetching data actions of 'TheComponent'
@@ -19,7 +19,7 @@ import {clientFetcher} from "./clientFetcher";
  * TheComponent: React Component
  * returns {Fecher}:  Fetcher Component
  */
-export const fecher = (TheComponent) => {
+export const fetcher = (TheComponent) => {
     let Fecher;
     
     if (IS_SERVER)

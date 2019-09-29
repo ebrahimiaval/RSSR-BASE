@@ -4,7 +4,7 @@ import Link from "react-router-dom/es/Link";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {axios} from "../../setup/utility/axios";
-import {fecher} from "../../Partial/fetcher/fetcher";
+import {fetcher} from "../../Partial/fetcher/fetcher";
 import {LOADING_CLASS} from "../../setup/constant";
 
 
@@ -48,4 +48,4 @@ Post.fetch = ({match}) => {
     });
 }
 
-export default fecher(Post);
+export default fetcher(Post);
