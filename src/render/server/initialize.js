@@ -2,11 +2,30 @@ import als from "async-local-storage";
 import {matchPath} from "react-router-dom";
 import {routeMap} from "../../setup/routeMap";
 import {isNotSet, isSet} from "../../setup/utility/checkSet";
+import App from "../../App/App";
 
 
 
 // define public structur and varibales
 export const initialize = function (req) {
+    // we use updatedState to set value of RSSR_UPDATED_REDUX_STATES in index template
+    // to pass data to the client for syncing reduxes and merge with defaultState
+    // of redux to creare store on the server
+    als.set('updatedState', {}, true);
+
+
+
+
+
+    // fetch fn of skeleton data (public and basic data) in all route of app
+    // this data store in redux skeleton satate
+    if (App.skeleton)
+        als.set('skeletonFetch', App.skeleton, true);
+
+
+
+
+
     /** match **/
     /*
     * CONSTATN {undefined || object}

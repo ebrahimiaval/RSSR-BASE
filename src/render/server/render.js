@@ -22,7 +22,8 @@ export const render = function (error, req, res, timerStart) {
     if (!error) {
         const fetch = als.get('fetch');
         const updatedState = als.get('updatedState');
-        const states = !!fetch && !!updatedState ? {...defaultState, ...updatedState} : undefined; // when passed states is undefined then createStore use defaultState
+        const dataExist = !!fetch && Object.getOwnPropertyNames(updatedState).length;
+        const states = dataExist ? {...defaultState, ...updatedState} : undefined; // when passed states is undefined then createStore use defaultState
         const store = createStore(states);
 
         app = (

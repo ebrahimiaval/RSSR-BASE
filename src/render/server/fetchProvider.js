@@ -5,29 +5,28 @@ import {convertErrorToResponse} from "../../setup/utility/convertErrorToResponse
 
 // fetch data of component from server
 export const fetchProvider = async function (req) {
-    // fetch() of component of matched route item
-    const fetch = als.get('fetch');
+    const fetch = als.get('fetch')
 
     // when component has not fetch() then fetch is undefined and fetchType is 'WITH_OUT_FETCH'
     if (!fetch)
-        return true;
+        return true
 
     // pass to fetch() as params ::1::
     const ftechParams = {
         match: als.get('match'), // match is match object of react-router-dom
         query: req.query //exp: {foo:'bar'} in 'http://www.site.com/post/1?foo=bar'
-    };
+    }
 
     // ::2::
     // NOTICE: catch() will be handel on the server.js with failedRes()
     await
         fetch(ftechParams)
             .then(function (response) {
-                handleResponse(response);
+                fetchResponsePreparing(response)
             })
             .catch(function (error) {
-                const response = convertErrorToResponse(error);
-                handleResponse(response);
+                const response = convertErrorToResponse(error)
+                fetchResponsePreparing(response)
             })
 }
 
@@ -35,22 +34,20 @@ export const fetchProvider = async function (req) {
 
 
 /**
- * set status and inject data to updatedState
- * @param response {object} : object with status and data property
+ *  1) response vaidation
+ *  2) set response status code
+ *  3) push data to updatedState (redux)
  */
-const handleResponse = (response) => {
+function fetchResponsePreparing(response) {
     // excute 'throw new Error' if response is not valid
-    responseValidation(response);
+    responseValidation(response)
 
     // set response status code
-    als.set('status', response.status, true);
+    als.set('status', response.status, true)
 
-    const
-        stateName = als.get('stateName'),
-        updatedState = {[stateName]: response.data};
-
-    // we use updatedState to set value of RSSR_UPDATED_REDUX_STATES in index template
-    // to pass data to the client for syncing reduxes and merge with defaultState
-    // of redux to creare store on the server
-    als.set('updatedState', updatedState, true);
+    const stateName = als.get('stateName')
+    const updatedState = als.get('updatedState')
+    updatedState[stateName] = response.data
+    als.set('updatedState', updatedState, true)
 }
+

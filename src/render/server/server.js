@@ -2,13 +2,14 @@ import als from "async-local-storage";
 import {render} from "./render";
 import {fetchProvider} from "./fetchProvider";
 import {initialize} from "./initialize";
+import {skeletonFetchProvider} from "./skeletonFetchProvider";
 
 
 export default function serverRenderer() {
     // start async-local-storage
     als.enable();
 
-    return (req, res) => {
+    return async (req, res) => {
         // each request need unique scope to can define and work with variables over the request
         als.scope();
 
@@ -19,6 +20,9 @@ export default function serverRenderer() {
         try {
             // define basic parameters
             initialize(req);
+
+            // call App.skeleton()
+            await skeletonFetchProvider(req);
 
             // call fetch() of component and get data
             fetchProvider(req)

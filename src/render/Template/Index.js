@@ -13,7 +13,8 @@ function Index (props) {
     let dataTransfer;
     if (!error) {
         const updatedState = als.get('updatedState');
-        if (updatedState !== undefined)
+        const dataExist = Object.getOwnPropertyNames(updatedState).length;
+        if (dataExist)
             dataTransfer = 'RSSR_UPDATED_REDUX_STATES =' + serialize(updatedState);
     } else {
         dataTransfer = 'RSSR_PROCCESS_ERROR = true'; //::4::
