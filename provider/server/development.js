@@ -12,7 +12,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const devServerIsReady = require('../setup/devServerIsReady');
-const {DIST_ROUTE} = require('../setup/constant');
+const {DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant');
 
 
 
@@ -31,7 +31,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 // static files
-app.use(express.static(path.resolve(process.cwd(), './public')));
+app.use(express.static(PUBLIC_PATH));
 
 // recompile webpack when file changes
 app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));

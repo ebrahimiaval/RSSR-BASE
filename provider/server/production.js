@@ -11,7 +11,7 @@ const serverRendererPath = path.resolve(process.cwd(), './dist/server.js');
 const serverRenderer = require(serverRendererPath).default;
 const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json');
 const stats = require(clientStatsPath);
-const {DIST_PATH, DIST_ROUTE} = require('../setup/constant');
+const {DIST_PATH, DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant');
 
 
 
@@ -24,7 +24,7 @@ const app = express();
 app.use(DIST_ROUTE, express.static(DIST_PATH));
 
 // load static files
-app.use(express.static(path.resolve(process.cwd(), 'public')));
+app.use(express.static(PUBLIC_PATH));
 
 // Redirect from www to non-www and remove slash at the end of URL
 seoOptimization(app);

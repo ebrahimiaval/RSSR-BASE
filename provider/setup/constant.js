@@ -10,5 +10,7 @@ module.exports = {
     DIST_ROUTE: '/dist',
     DIST_PATH: path.resolve(process.cwd(), './dist'),
 
+    PUBLIC_PATH: path.resolve(process.cwd(), './public'),
+
     SCSS_PATH: path.resolve(process.cwd(), './src/setup/style')
 }
