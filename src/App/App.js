@@ -8,6 +8,8 @@ import {firstSetup} from "../Component/Auth/action/firstSetup";
 import SignInModal from "../Component/Auth/SignInModal";
 import SignUpModal from "../Component/Auth/SignUpModal";
 import "./app.scss";
+import {axios} from "../setup/utility/axios";
+import {api} from "../setup/api";
 
 
 function App() {
@@ -28,5 +30,10 @@ function App() {
         </Fragment>
     );
 };
+
+App.skeleton = function () {
+    return axios({url: api.skeleton})
+}
+App.skeleton.cache = true;
 
 export default App;

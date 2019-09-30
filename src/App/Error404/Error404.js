@@ -1,8 +1,9 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import {browserHistory} from "../../setup/browserHistory";
+import {connect} from "trim-redux";
 
-function Error404() {
+function Error404(props) {
     return (
         <div id="e404" className="container-fluid mb-3">
             <Helmet title="متاسفانه صفحه مورد نظر یافت نشد!"/>
@@ -15,10 +16,13 @@ function Error404() {
                         <i className="fa fa-angle-right font-weight-bold ml-1"></i>
                         بازگشت
                     </button>
+                    <div className="mt-3 alert alert-info">
+                        نمونه skeleton: {props.skeleton.title}
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Error404;
+export default connect(s => ({skeleton: s.skeleton}))(Error404);

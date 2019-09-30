@@ -16,6 +16,7 @@ let api = {
         trust: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
         submit: 'http://www.mocky.io/v2/5d288a902c0000e3393edae5',
     },
+    skeleton:'/posts/1',
 
     // other APIs
     posts: '/posts',

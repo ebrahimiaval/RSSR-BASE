@@ -15,7 +15,10 @@ import {isSet} from "./utility/checkSet";
 export const defaultState = {
     localUser: {updated: false, token: null, detail: null},
     post: null,
-    home: {isLoading: true}
+    home: {isLoading: true},
+    skeleton: {
+        title: 'Occor when Error fetch skeleton!'
+    }
 }
 
 
