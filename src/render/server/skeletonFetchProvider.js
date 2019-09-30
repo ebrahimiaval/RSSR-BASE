@@ -40,8 +40,7 @@ export const skeletonFetchProvider = async function (req) {
                 if (isNaN(expLong))
                     throw new Error('⛔ value of SKELETON_CACHE_EXP in .env must be Number type. this is number of hour to expire SKELETON-CACHED-DATA. exp: 12')
 
-                // const expDate = Date.now() + expLong * 60 * 60 * 1000;
-                const expDate = Date.now() + 10000;
+                const expDate = Date.now() + expLong * 60 * 60 * 1000;
                 global['SKELETON-CACHE-EXP'] = expDate;
             })
 }
