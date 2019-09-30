@@ -55,6 +55,7 @@ export const skeletonFetchProvider = async function (req) {
  */
 function skeletonGetDataFromApi(req) {
     const skeletonFetch = als.get('skeletonFetch')
+    const updatedState = als.get('updatedState')
 
     //::1:: pass to skeleton fetch as params
     const ftechParams = {
@@ -68,7 +69,6 @@ function skeletonGetDataFromApi(req) {
                 responseValidation(response)
 
                 // push data to updatedState
-                const updatedState = als.get('updatedState')
                 updatedState['skeleton'] = response.data
                 als.set('updatedState', updatedState, true)
 
@@ -76,6 +76,11 @@ function skeletonGetDataFromApi(req) {
             })
             .catch(function (err) {
                 console.error(err);
+
+                // push data to updatedState
+                updatedState['skeletonError'] = true;
+                als.set('updatedState', updatedState, true)
+
                 reject(err);
             })
     })

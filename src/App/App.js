@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import {ToastContainer} from 'react-toastify';
 import Router from "../Partial/Router/Router";
 import Menu from "../Component/Menu/Menu";
+import {skeletonClientProvider} from "../setup/utility/skeletonClientProvider";
 import FirstLoading from "../Component/FirstLoading/FirstLoading";
 import {firstSetup} from "../Component/Auth/action/firstSetup";
 import SignInModal from "../Component/Auth/SignInModal";
@@ -16,6 +17,9 @@ function App() {
     useEffect(() => {
         // user Authentication, get cart, set theme and more.
         firstSetup();
+
+        // refetch skeleton on client when server fetch skeleton error
+        skeletonClientProvider()
     }, []);
 
     return (
