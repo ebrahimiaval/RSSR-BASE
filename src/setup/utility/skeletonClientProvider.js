@@ -8,7 +8,7 @@ import App from "../../App/App";
 export const skeletonClientProvider = function () {
     // when server fetch data successfully
     if (getStore('skeletonError') !== true){
-        logger(false)
+        debugLog(false)
         return;
     }
 
@@ -17,6 +17,7 @@ export const skeletonClientProvider = function () {
         match: {},
         query: clientQueryString()
     };
+
     routeMap.find(route => {
         // is object for matched or null for not matched
         const match = matchPath(browserHistory.location.pathname, route);
@@ -30,12 +31,12 @@ export const skeletonClientProvider = function () {
     App.skeleton(ftechParams)
         .then(function (response) {
             setStore('skeleton', response.data)
-            logger(true)
+            debugLog(true)
         })
 }
 
 
-function logger(inClient) {
-    if (JSON.parse(process.env.RSSR_FETCHER_LOGGER))
+function debugLog(inClient) {
+    if (JSON.parse(process.env.RSSR_SKELETON_DEBUG))
         console.info((inClient ? '🙎‍♂️' : '🌎') + ' fetch skeleton in ' + (inClient ? 'client' : 'server'));
 }

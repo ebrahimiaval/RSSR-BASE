@@ -25,11 +25,11 @@ import {API_DOMAIN, IS_SERVER} from "../constant";
                 //  transpile actions
                 return response; // required for fetch()
             })
-         .catch(function (e) {
-                // if (e.status === 400)
+         .catch(function (err) {
+                // if (err.status === 400)
                 //    toast.error('your custom error');
                 // else
-                //    toast.error('خطا.اتصال اینترنت خود را بررسی نماید و مجددا تلاش نمایید و در صورت تکرار با پشتیبانی تماس بگیرید.', {autoClose: 8000});
+                //     badConnectionAlert('whereOf');
             })
 
  ***************************************************************/

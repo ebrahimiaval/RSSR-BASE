@@ -48,10 +48,10 @@ function ForgetPasswordForm(props) {
                 );
                 toast.success(message, {autoClose: false});
             })
-            .catch((e) => {
+            .catch((err) => {
                 setIsLoading(false);
 
-                if (e.status === 400)
+                if (err.status === 400)
                     toast.error('ایمیل معتبر نمی‌باشد!');
                 else
                     toast.error('خطا. مجددا تلاش نمایید و در صورت تکرار با پشتیبانی تماس بگیرید.');

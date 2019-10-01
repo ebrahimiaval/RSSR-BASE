@@ -6,41 +6,44 @@ export const skeletonFetchProvider = async function (req) {
     const skeletonFetch = als.get('skeletonFetch')
 
     // App component does not skeleton() property
-    if (!skeletonFetch)
+    if (!skeletonFetch) {
+        debugLog('WITH OUT SKELETON. App Component has not skeleton property')
         return true;
+    }
 
-    // cache is off
-    if (!skeletonFetch.cache) {
+    // cache is disabled
+    if (typeof skeletonFetch.cache !== "number" || skeletonFetch.cache <= 0) {
+        debugLog('skeleton WITH OUT CACHE. skeleton.cache is not number and more than ziro')
         await skeletonGetDataFromApi(req);
         return true;
     }
 
     // delete global['SKELETON-CACHED-DATA'];
     const data = global['SKELETON-CACHED-DATA'];
-    const dataExist = data !== undefined;
 
-    if (dataExist) {
+    // when cache data exist
+    if (data !== undefined) {
         const notExpired = (global['SKELETON-CACHE-EXP'] - Date.now()) > 0;
         if (notExpired) {
+            debugLog('READ skeleton data from CACHE')
             als.set('updatedState', data, true)
             return true;
         } else {
+            debugLog('skeleton cache EXPIRED')
             delete global['SKELETON-CACHED-DATA']
         }
     }
 
     await
         skeletonGetDataFromApi(req)
+        // caching data
             .then(function () {
-                // setup cache
+                debugLog('CACHING skeleton data')
+
                 const updatedState = als.get('updatedState')
                 global['SKELETON-CACHED-DATA'] = updatedState
 
-                const expLong = Number(process.env['SKELETON_CACHE_EXP']);
-                if (isNaN(expLong))
-                    throw new Error('⛔ value of SKELETON_CACHE_EXP in .env must be Number type. this is number of hour to expire SKELETON-CACHED-DATA. exp: 12')
-
-                const expDate = Date.now() + expLong * 60 * 60 * 1000;
+                const expDate = Date.now() + skeletonFetch.cache * 60 * 60 * 1000;
                 global['SKELETON-CACHE-EXP'] = expDate;
             })
 }
@@ -57,6 +60,8 @@ function skeletonGetDataFromApi(req) {
     const skeletonFetch = als.get('skeletonFetch')
     const updatedState = als.get('updatedState')
 
+    debugLog('fetch skeleton data from API')
+
     //::1:: pass to skeleton fetch as params
     const ftechParams = {
         match: als.get('match'), // match is match object of react-router-dom
@@ -72,10 +77,12 @@ function skeletonGetDataFromApi(req) {
                 updatedState['skeleton'] = response.data
                 als.set('updatedState', updatedState, true)
 
+                debugLog('fetch skeleton data SUCCESSFULLY')
                 resolve(updatedState);
             })
             .catch(function (err) {
-                console.error(err);
+                debugLog('ERROR in fetch skeleton')
+                // console.error(err);
 
                 // push data to updatedState
                 updatedState['skeletonError'] = true;
@@ -84,4 +91,14 @@ function skeletonGetDataFromApi(req) {
                 reject(err);
             })
     })
+}
+
+
+
+
+// active switch for debuging logs
+const debug = JSON.parse(process.env.RSSR_SKELETON_DEBUG);
+function debugLog(msg) {
+    if (debug)
+        console.info('SKELETON > ' + msg)
 }

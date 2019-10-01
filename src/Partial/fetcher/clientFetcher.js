@@ -35,14 +35,14 @@ export const clientFetcher = function (TheComponent) {
             let needClientFetch;
             try {
                 needClientFetch = JSON.stringify(this.props[stateName]) === JSON.stringify(defaultState[stateName])
-            } catch (e) {
-                console.error('⚠ data is not valid.', e);
+            } catch (err) {
+                console.error('⚠ data is not valid.', err);
             }
 
             if (needClientFetch)
                 this.fetchProvider();
             else
-                this.logger(false);
+                this.debugLog(false);
         }
 
 
@@ -51,7 +51,7 @@ export const clientFetcher = function (TheComponent) {
 
         // fetch data and insert to redux
         fetchProvider() {
-            this.logger(true);
+            this.debugLog(true);
 
             // ::2::
             TheComponent
@@ -71,8 +71,8 @@ export const clientFetcher = function (TheComponent) {
 
 
         // log fetch type in development environment
-        logger(inClient) {
-            if (JSON.parse(process.env.RSSR_FETCHER_LOGGER))
+        debugLog(inClient) {
+            if (JSON.parse(process.env.RSSR_FETCHER_DEBUG))
                 console.info((inClient ? '🙎‍♂️' : '🌎') + ' fetch ' + this.props.match.url + ' in ' + (inClient ? 'client' : 'server'));
         }
 

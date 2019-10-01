@@ -3,13 +3,18 @@ import {responseValidation} from "../../setup/utility/responseValidation";
 import {convertErrorToResponse} from "../../setup/utility/convertErrorToResponse";
 
 
+
 // fetch data of component from server
 export const fetchProvider = async function (req) {
     const fetch = als.get('fetch')
 
     // when component has not fetch() then fetch is undefined and fetchType is 'WITH_OUT_FETCH'
-    if (!fetch)
+    if (!fetch) {
+        debugLog('this route HAS NOT FETCH property', req)
         return true
+    }
+
+    debugLog('fetch data from API', req)
 
     // pass to fetch() as params ::1::
     const ftechParams = {
@@ -22,10 +27,12 @@ export const fetchProvider = async function (req) {
     await
         fetch(ftechParams)
             .then(function (response) {
+                debugLog('fetch data SUCCESSFULLY', req)
                 fetchResponsePreparing(response)
             })
             .catch(function (error) {
-                const response = convertErrorToResponse(error)
+                debugLog('ERROR in fetch', req)
+                const response = convertErrorToResponse(error, req)
                 fetchResponsePreparing(response)
             })
 }
@@ -51,3 +58,14 @@ function fetchResponsePreparing(response) {
     als.set('updatedState', updatedState, true)
 }
 
+
+
+
+
+// active switch for debuging logs
+const debug = JSON.parse(process.env.RSSR_FETCHER_DEBUG);
+
+function debugLog(msg, req) {
+    if (debug)
+        console.info('FETCH > ' + msg + '. route: ', req.originalUrl)
+}

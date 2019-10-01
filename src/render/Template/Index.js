@@ -5,7 +5,7 @@ import als from "async-local-storage";
 
 function Index (props) {
     const
-        {renderedApp, helmet, error} = props,
+        {renderedView, helmet, error} = props,
         htmlAttrs = helmet.htmlAttributes.toComponent(),
         bodyAttrs = helmet.bodyAttributes.toComponent();
 
@@ -34,7 +34,7 @@ function Index (props) {
             <link rel="stylesheet" href={`/dist/styles.css${global.FILE_VERSION /*::5::*/}`}/>
         </head>
         <body className="rtl" {...bodyAttrs}>
-            <div id="app-root" dangerouslySetInnerHTML={{__html: renderedApp}}></div>
+            <div id="app-root" dangerouslySetInnerHTML={{__html: renderedView}}></div>
             {
                 dataTransfer ? <script dangerouslySetInnerHTML={{__html: dataTransfer}}/> : ''
             }

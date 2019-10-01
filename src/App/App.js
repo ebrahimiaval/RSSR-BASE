@@ -5,7 +5,7 @@ import Router from "../Partial/Router/Router";
 import Menu from "../Component/Menu/Menu";
 import {skeletonClientProvider} from "../setup/utility/skeletonClientProvider";
 import FirstLoading from "../Component/FirstLoading/FirstLoading";
-import {firstSetup} from "../Component/Auth/action/firstSetup";
+import {firstSetup} from "../Component/Auth/__action/firstSetup";
 import SignInModal from "../Component/Auth/SignInModal";
 import SignUpModal from "../Component/Auth/SignUpModal";
 import "./app.scss";
@@ -38,6 +38,6 @@ function App() {
 App.skeleton = function () {
     return axios({url: api.skeleton})
 }
-App.skeleton.cache = true;
+App.skeleton.cache = 6; //reset cache in each 6 hour
 
 export default App;

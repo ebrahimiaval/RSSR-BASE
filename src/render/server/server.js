@@ -3,6 +3,7 @@ import {render} from "./render";
 import {fetchProvider} from "./fetchProvider";
 import {initialize} from "./initialize";
 import {skeletonFetchProvider} from "./skeletonFetchProvider";
+import {errorLogger} from "../../setup/utility/errorLogger";
 
 
 export default function serverRenderer() {
@@ -13,23 +14,26 @@ export default function serverRenderer() {
         // each request need unique scope to can define and work with variables over the request
         als.scope();
 
-        const
-            timerStart = Date.now(),// use in errorLogger for calculate proccess time
-            response = (error) => render(error, req, res, timerStart); // make response
+        // make response
+        const response = (error) => render(error, req, res);
 
         try {
             // define basic parameters
             initialize(req);
 
-            // call App.skeleton()
-            await skeletonFetchProvider(req);
+            // handle skeleton data (App.skeleton)
+            try {
+                await skeletonFetchProvider(req);
+            } catch (err) {
+                errorLogger('SKELETON >', err, false, req);
+            }
 
             // call fetch() of component and get data
             fetchProvider(req)
                 .then(() => response()) // get data successfully
-                .catch((e) => response(e)); // occur error in fetchProvider() or render()
-        } catch (e) {
-            response(e) // occur error in try
+                .catch((err) => response(err)); // occur error in fetchProvider() or render()
+        } catch (err) {
+            response(err) // occur error in try
         }
     };
 }

@@ -60,8 +60,8 @@ function config(options) {
         })
 
         return {parsed}
-    } catch (e) {
-        console.error(e);
+    } catch (err) {
+        console.error(err);
     }
 }
 

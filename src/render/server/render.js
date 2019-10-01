@@ -13,10 +13,10 @@ import Error from "../Template/Error";
 
 
 /**
- * render app on the server and send response as HTML to client
+ * render view on the server and send response as HTML to client
  */
-export const render = function (error, req, res, timerStart) {
-    let app;
+export const render = function (error, req, res) {
+    let view;
     const context = {};
 
     if (!error) {
@@ -26,7 +26,7 @@ export const render = function (error, req, res, timerStart) {
         const states = dataExist ? {...defaultState, ...updatedState} : undefined; // when passed states is undefined then createStore use defaultState
         const store = createStore(states);
 
-        app = (
+        view = (
             <Provider store={store}>
                 <StaticRouter location={req.url} context={context}>
                     <App processError={error}/>
@@ -34,19 +34,18 @@ export const render = function (error, req, res, timerStart) {
             </Provider>
         );
     } else {
-        errorLogger('server.js', timerStart, error, false, req); // log to console
-
-        app = <Error error={error}/>
+        errorLogger('SERVER >', error, false, req);
+        view = <Error error={error}/>
     }
 
-    const renderedApp = ReactDOMServer.renderToString(app);
+    const renderedView = ReactDOMServer.renderToString(view);
     const helmet = Helmet.renderStatic();
 
     if (!context.url) {
         const status = !error ? (als.get('status') || 500) : 500;
 
         // make HTML response
-        let response = <Index renderedApp={renderedApp} helmet={helmet} error={error}/>;
+        let response = <Index renderedView={renderedView} helmet={helmet} error={error}/>;
         response = ReactDOMServer.renderToString(response);
         response = '<!DOCTYPE html>' + response;
 

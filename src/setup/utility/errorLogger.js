@@ -1,12 +1,11 @@
 /**
- * error handler
- * log errors in console
+ * log axios error to console
  */
-export const errorLogger = (title, timerStart, error, ignoreMessage, req) => {
+export const errorLogger = (title, error, ignoreMessage, req) => {
     // get uesr IP if exist
     let ip = '', url = '';
     if (req !== undefined) {
-        url = req.url;
+        url = req.originalUrl;
 
         ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         if (typeof ip === 'string')
@@ -29,8 +28,8 @@ export const errorLogger = (title, timerStart, error, ignoreMessage, req) => {
         type = "PUB"; // public error - other errors
     }
 
-    console.error(`${type} ${title} ${Date.now() - timerStart}ms ${ip} ${url}`);
+    console.error(`${title} ${type} ${ip} ${url}`);
 
     if (errorMessage && !ignoreMessage)
-        console.error(errorMessage);
+        console.error('\t' + errorMessage);
 }
