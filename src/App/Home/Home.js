@@ -6,6 +6,7 @@ import {route} from "../../setup/route";
 import {axios} from "../../setup/utility/axios";
 import {fetcher} from "../../Partial/fetcher/fetcher";
 import "./home.scss";
+import Breackpoint from "../../Partial/Breakpoint/Breakpoint";
 
 
 function Home(props) {
@@ -21,6 +22,13 @@ function Home(props) {
                     برای خلق بهترین‌ها باید بیشتر تلاش کرد، چیزی که ساده به دست بیاد، می‌تونه خیلی ساده هم از دست بره.
                 </p>
             </div>
+            <Breackpoint from="md" to="lg">
+                {
+                    () => (
+                        <div className="alert alert-danger">sample breakpoint alert</div>
+                    )
+                }
+            </Breackpoint>
 
             <div className="row">
                 {
