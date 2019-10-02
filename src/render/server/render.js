@@ -29,7 +29,7 @@ export const render = function (error, req, res) {
         view = (
             <Provider store={store}>
                 <StaticRouter location={req.url} context={context}>
-                    <App processError={error}/>
+                    <App/>
                 </StaticRouter>
             </Provider>
         );

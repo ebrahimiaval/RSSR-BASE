@@ -54,7 +54,6 @@ class Breackpoint extends Component {
 
 
     render() {
-        console.log('render')
         return this.state.show ? this.props.children() : ''
     }
 }
