@@ -1,8 +1,27 @@
 /**
- * @type {boolean}: IS_BROWSER in client is 'true' and in server is 'false' and IS_SERVER is reversed
+ *  IS_BROWSER in client is 'true' and in server is 'false' and IS_SERVER is reversed
  */
 export const IS_BROWSER = typeof window !== 'undefined';
 export const IS_SERVER = !IS_BROWSER;
+
+
+
+
+
+/**
+ * is IOS device
+ */
+export const isIOS = IS_BROWSER ? !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform) : false;
+
+
+
+
+
+/**
+ * is PWA mode
+ */
+export const isPWA = IS_BROWSER ? window.matchMedia('(display-mode: standalone)').matches : false;
+
 
 
 
@@ -21,6 +40,8 @@ export const API_DOMAIN = IS_BROWSER ? process.env.API_HOST_IN_CLIENT : process.
 
 
 
+
+
 /**
  * use to flash in loading items
  */
@@ -29,8 +50,11 @@ export const LOADING_CLASS = 'animated flash infinite d-2s';
 
 
 
-// regex pattern
-// use for validation form
+
+/**
+ * regex pattern
+ * use for validation form
+ */
 export const regexp = {
     //like: m.ebrahimiaval@gmail.com
     email: '((([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,})))',
