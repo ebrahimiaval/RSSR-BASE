@@ -26,7 +26,7 @@ export const skeletonFetchProvider = async function (req) {
         const notExpired = (global['SKELETON-CACHE-EXP'] - Date.now()) > 0;
         if (notExpired) {
             debugLog('READ skeleton data from CACHE')
-            als.set('updatedState', data, true)
+            pushDataToUpdatedState.success(data)
             return true;
         } else {
             debugLog('skeleton cache EXPIRED')
@@ -37,14 +37,10 @@ export const skeletonFetchProvider = async function (req) {
     await
         skeletonGetDataFromApi(req)
         // caching data
-            .then(function () {
+            .then(function (data) {
                 debugLog('CACHING skeleton data')
-
-                const updatedState = als.get('updatedState')
-                global['SKELETON-CACHED-DATA'] = updatedState
-
-                const expDate = Date.now() + skeletonFetch.cache * 60 * 60 * 1000;
-                global['SKELETON-CACHE-EXP'] = expDate;
+                global['SKELETON-CACHED-DATA'] = data
+                global['SKELETON-CACHE-EXP'] = Date.now() + skeletonFetch.cache * 60 * 60 * 1000;
             })
 }
 
@@ -58,8 +54,6 @@ export const skeletonFetchProvider = async function (req) {
  */
 function skeletonGetDataFromApi(req) {
     const skeletonFetch = als.get('skeletonFetch')
-    const updatedState = als.get('updatedState')
-
     debugLog('fetch skeleton data from API')
 
     //::1:: pass to skeleton fetch as params
@@ -73,22 +67,14 @@ function skeletonGetDataFromApi(req) {
         skeletonFetch(ftechParams)
             .then(function (response) {
                 responseValidation(response)
-
-                // push data to updatedState
-                updatedState['skeleton'] = response.data
-                als.set('updatedState', updatedState, true)
-
+                pushDataToUpdatedState.success(response.data)
                 debugLog('fetch skeleton data SUCCESSFULLY')
-                resolve(updatedState);
+                resolve(response.data);
             })
             .catch(function (err) {
                 debugLog('ERROR in fetch skeleton')
-                // console.error(err);
-
-                // push data to updatedState
-                updatedState['skeletonError'] = true;
-                als.set('updatedState', updatedState, true)
-
+                // push error to updatedState
+                pushDataToUpdatedState.error()
                 reject(err);
             })
     })
@@ -97,8 +83,30 @@ function skeletonGetDataFromApi(req) {
 
 
 
+
+/**
+ * set value of 'skeleton' OR 'skeletonError' in 'updatedState'
+ */
+const pushDataToUpdatedState = {
+    success: function (data) {
+        const updatedState = als.get('updatedState')
+        updatedState['skeleton'] = data
+        als.set('updatedState', updatedState, true)
+    },
+    error: function () {
+        const updatedState = als.get('updatedState')
+        updatedState['skeletonError'] = true
+        als.set('updatedState', updatedState, true)
+    }
+}
+
+
+
+
+
 // active switch for debuging logs
 const debug = JSON.parse(process.env.RSSR_SKELETON_DEBUG);
+
 function debugLog(msg) {
     if (debug)
         console.info('SKELETON > ' + msg)
