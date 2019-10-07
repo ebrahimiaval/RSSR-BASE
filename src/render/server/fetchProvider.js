@@ -18,6 +18,7 @@ export const fetchProvider = async function (req) {
 
     // pass to fetch() as params ::1::
     const ftechParams = {
+        req: req, // Express js request object
         match: als.get('match'), // match is match object of react-router-dom
         query: req.query //exp: {foo:'bar'} in 'http://www.site.com/post/1?foo=bar'
     }

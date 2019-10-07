@@ -64,6 +64,7 @@ function skeletonGetDataFromApi(req) {
 
     //::1:: pass to skeleton fetch as params
     const ftechParams = {
+        req: req, // Express js request object
         match: als.get('match'), // match is match object of react-router-dom
         query: req.query //exp: {foo:'bar'} in 'http://www.site.com/post/1?foo=bar'
     }
