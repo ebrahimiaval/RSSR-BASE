@@ -17,7 +17,7 @@ const DefaultErrors = (props) => {
             <div className="row">
                 <div className="col-24 text-center">
                     <h4 className="py-5">خطای {status}</h4>
-                    <pre>{data}</pre>
+                    <pre>{JSON.stringify(data)}</pre>
                     <code>
                         {code ? code : ''}
                     </code>
