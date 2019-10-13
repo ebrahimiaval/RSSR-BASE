@@ -26,7 +26,7 @@ import {API_DOMAIN, IS_SERVER} from "../constant";
                 return response; // required for fetch()
             })
          .catch(function (err) {
-                // if (err.status === 400)
+                // if (err.response.status === 400)
                 //    toast.error('your custom error');
                 // else
                 //     badConnectionAlert('whereOf');
