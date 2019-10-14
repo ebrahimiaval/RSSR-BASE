@@ -8,6 +8,7 @@ import App from "../../App/App";
 
 // define public structur and varibales
 export const initialize = function (req) {
+    /** updatedState **/
     // we use updatedState to set value of RSSR_UPDATED_REDUX_STATES in index template
     // to pass data to the client for syncing reduxes and merge with defaultState
     // of redux to creare store on the server
@@ -16,7 +17,7 @@ export const initialize = function (req) {
 
 
 
-
+    /** skeleton **/
     // fetch fn of skeleton data (public and basic data) in all route of app
     // this data store in redux skeleton satate
     if (App.skeleton)
