@@ -4,10 +4,10 @@ import als from "async-local-storage";
 
 
 function Index (props) {
-    const
-        {renderedView, helmet, error} = props,
-        htmlAttrs = helmet.htmlAttributes.toComponent(),
-        bodyAttrs = helmet.bodyAttributes.toComponent();
+    const {renderedView, helmet, error} = props
+    const htmlAttrs = helmet.htmlAttributes.toComponent()
+    const bodyAttrs = helmet.bodyAttributes.toComponent()
+    const schema = als.get('schema')
 
     // transfer data from server to client
     let dataTransfer;
@@ -37,6 +37,9 @@ function Index (props) {
             <div id="app-root" dangerouslySetInnerHTML={{__html: renderedView}}></div>
             {
                 dataTransfer ? <script dangerouslySetInnerHTML={{__html: dataTransfer}}/> : ''
+            }
+            {
+                schema ? <script type="application/ld+json" dangerouslySetInnerHTML={{__html: serialize(schema)}}></script> : ''
             }
             <script src={`/dist/client.js${global.FILE_VERSION /*::5::*/}`}></script>
         </body>

@@ -57,6 +57,10 @@ function fetchResponsePreparing(response) {
     const updatedState = als.get('updatedState')
     updatedState[stateName] = response.data
     als.set('updatedState', updatedState, true)
+
+    // use for improve SEO
+    if(response.schema)
+        als.set('schema', response.schema, true)
 }
 
 
