@@ -1,19 +1,19 @@
-#hme {
-    .card {
-        color : #404040;
+@namespace "home";
+
+.card {
+    color : #404040;
+
+    span {
+        font-size : 13px;
+        opacity   : 0.3;
+    }
+
+    &:hover {
+        text-decoration : none;
 
         span {
-            font-size : 13px;
-            opacity   : 0.3;
+            opacity : 1;
         }
 
-        &:hover {
-            text-decoration : none;
-
-            span {
-                opacity : 1;
-            }
-
-        }
     }
 }

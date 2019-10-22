@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {CLIENT_NAME, DIST_ROUTE, SCSS_PATH, CLIENT_PATH, SERVER_PATH, SERVER_NAME} = require('../setup/constant');
+const {CLIENT_NAME, DIST_ROUTE, SCSS_PATH, CLIENT_PATH, SERVER_PATH, SERVER_NAME, SASS_NAMESPACE_LOADER, IGNORE_CSS_IN_SERVER} = require('../setup/constant');
 
 
 //?quiet=true
@@ -52,6 +52,9 @@ module.exports = [
                                 outputStyle: 'compressed',
                                 includePaths: [SCSS_PATH]
                             }
+                        },
+                        {
+                            loader: SASS_NAMESPACE_LOADER
                         }
                     ]
                 },
@@ -105,28 +108,7 @@ module.exports = [
                 },
                 {
                     test: /\.(css|scss)$/,
-                    use: [
-                        {
-                            loader: 'isomorphic-style-loader',
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                // modules: true,
-                                // localIdentName: '[local]__[hash:base64:5]',
-                                sourceMap: true,
-                                importLoaders: 1
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true,
-                                outputStyle: 'compressed',
-                                includePaths: [SCSS_PATH]
-                            }
-                        }
-                    ]
+                    use: IGNORE_CSS_IN_SERVER
                 }
             ],
         },

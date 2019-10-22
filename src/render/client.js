@@ -12,6 +12,7 @@ import "../setup/style/bootstrap/bootstrap.scss";
 import "../setup/utility/samplejQueryPlugin";
 import "../setup/style/animate.scss";
 import "../setup/style/limitedResonsive.scss";
+import "../setup/style/public.scss";
 
 // ::4::
 if (!window.RSSR_PROCCESS_ERROR) {

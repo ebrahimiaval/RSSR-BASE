@@ -5,57 +5,60 @@ import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {axios} from "../../setup/utility/axios";
 import {fetcher} from "../../Partial/fetcher/fetcher";
-import "./home.scss";
 import Breackpoint from "../../Partial/Breakpoint/Breakpoint";
+import Namespace from "../../Partial/Namespace/Namespace";
+import "./home.scss";
 
 
 function Home(props) {
     const {home} = props;
 
     return (
-        <div id="hme" className="container">
-            <Helmet title="صفحه ‌اصلی"/>
+        <Namespace namespace="home">
+            <div className="container">
+                <Helmet title="صفحه ‌اصلی"/>
 
-            <div className="jumbotron mt-3" id="abc">
-                <h5>موفقیت اتفاقی نیست!</h5>
-                <p className="lead">
-                    برای خلق بهترین‌ها باید بیشتر تلاش کرد، چیزی که ساده به دست بیاد، می‌تونه خیلی ساده هم از دست بره.
-                </p>
-            </div>
-            <Breackpoint from="md" to="lg">
-                {
-                    () => (
-                        <div className="alert alert-danger">sample breakpoint alert</div>
-                    )
-                }
-            </Breackpoint>
-
-            <div className="row">
-                {
-                    (home.isLoading) ?
-                        (
-                            <div className="col-24 text-center">
-                                <img src="/asset/img/loading.gif" alt="loading"/>
-                                <div> در حال بار گذاری مطالب</div>
-                            </div>
+                <div className="jumbotron mt-3" id="abc">
+                    <h5>موفقیت اتفاقی نیست!</h5>
+                    <p className="lead">
+                        برای خلق بهترین‌ها باید بیشتر تلاش کرد، چیزی که ساده به دست بیاد، می‌تونه خیلی ساده هم از دست بره.
+                    </p>
+                </div>
+                <Breackpoint from="md" to="lg">
+                    {
+                        () => (
+                            <div className="alert alert-danger">sample breakpoint alert</div>
                         )
-                        :
-                        (
-                            home.map((item) => (
-                                <div className="col-md-8 my-2 px-3 animated fadeIn" key={item.id}>
-                                    <Link to={route.post(item.id)} className="card">
-                                        <div className="card-body">
-                                            <h3 className="card-title text-truncate h6">{item.title}</h3>
-                                            <p className="card-text text-truncate">{item.body}</p>
-                                            <span>مشاهده مطلب</span>
-                                        </div>
-                                    </Link>
+                    }
+                </Breackpoint>
+
+                <div className="row">
+                    {
+                        (home.isLoading) ?
+                            (
+                                <div className="col-24 text-center">
+                                    <img src="/asset/img/loading.gif" alt="loading"/>
+                                    <div> در حال بار گذاری مطالب</div>
                                 </div>
-                            ))
-                        )
-                }
+                            )
+                            :
+                            (
+                                home.map((item) => (
+                                    <div className="col-md-8 my-2 px-3 animated fadeIn" key={item.id}>
+                                        <Link to={route.post(item.id)} className="card">
+                                            <div className="card-body">
+                                                <h3 className="card-title text-truncate h6">{item.title}</h3>
+                                                <p className="card-text text-truncate">{item.body}</p>
+                                                <span>مشاهده مطلب</span>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))
+                            )
+                    }
+                </div>
             </div>
-        </div>
+        </Namespace>
     );
 };
 
