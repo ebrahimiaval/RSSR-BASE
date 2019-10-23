@@ -3,9 +3,9 @@ import {Helmet} from "react-helmet";
 import Link from "react-router-dom/es/Link";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
-import axios from "axios";
 import {fetcher} from "../../Partial/fetcher/fetcher";
 import {LOADING_CLASS} from "../../setup/constant";
+import {fetching} from "../../setup/utility/fetching";
 
 
 function Post(props) {
@@ -43,7 +43,7 @@ function Post(props) {
 
 Post.redux = 'post';
 Post.fetch = ({match}) => {
-    return axios({
+    return fetching({
         url: api.post(match.params.postId)
     });
 }

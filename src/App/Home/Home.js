@@ -2,12 +2,12 @@ import React from 'react';
 import {Helmet} from "react-helmet";
 import {Link} from "react-router-dom";
 import {api} from "../../setup/api";
-import axios from "axios";
 import {route} from "../../setup/route";
 import {fetcher} from "../../Partial/fetcher/fetcher";
 import Breackpoint from "../../Partial/Breakpoint/Breakpoint";
 import Namespace from "../../Partial/Namespace/Namespace";
 import "./home.scss";
+import {fetching} from "../../setup/utility/fetching";
 
 
 function Home(props) {
@@ -24,10 +24,10 @@ function Home(props) {
                         برای خلق بهترین‌ها باید بیشتر تلاش کرد، چیزی که ساده به دست بیاد، می‌تونه خیلی ساده هم از دست بره.
                     </p>
                 </div>
-                <Breackpoint from="md" to="lg">
+                <Breackpoint from="md">
                     {
                         () => (
-                            <div className="alert alert-danger">sample breakpoint alert</div>
+                            <div className="alert alert-info">مثالی برای Breackpoint</div>
                         )
                     }
                 </Breackpoint>
@@ -64,8 +64,6 @@ function Home(props) {
 
 
 Home.redux = 'home';
-Home.fetch = function () {
-    return axios({url: api.posts})
-}
+Home.fetch = () => fetching({url: api.posts})
 
 export default fetcher(Home);
