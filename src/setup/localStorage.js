@@ -24,7 +24,7 @@ export default function () {
     storage.init('version', version);
 
     // available version in localstorage (sometime meaning previous version)
-    const nowVersion = storage.get(version);
+    const nowVersion = storage.get('version');
 
 
 
@@ -34,12 +34,12 @@ export default function () {
      * update
      */
     if (nowVersion !== version) {
-        // update available vesion
-        storage.set('version', version);
-
         // sample of remove value
         // if (nowVersion < 5 && nowVersion > 2) {
         //     localStorage.removeItem('sampleValue');
+
+        // update available vesion
+        storage.set('version', version);
     }
 
 
