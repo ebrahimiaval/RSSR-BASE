@@ -8,7 +8,7 @@ import FirstLoading from "../Component/FirstLoading/FirstLoading";
 import {firstSetup} from "../Component/Auth/__action/firstSetup";
 import SignInModal from "../Component/Auth/SignInModal";
 import SignUpModal from "../Component/Auth/SignUpModal";
-import {axios} from "../setup/utility/axios";
+import axios from "axios";
 import {api} from "../setup/api";
 
 

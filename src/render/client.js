@@ -6,8 +6,9 @@ import {clientCreateStore} from "../setup/store";
 import {browserHistory} from "../setup/browserHistory";
 import localStorageSetup from "../setup/localStorage";
 import App from "../App/App";
-import 'bootstrap';
-import 'react-toastify/dist/ReactToastify.min.css';
+import "bootstrap";
+import "../setup/axiosConfig"
+import "react-toastify/dist/ReactToastify.min.css";
 import "../setup/style/bootstrap/bootstrap.scss";
 import "../setup/utility/samplejQueryPlugin";
 import "../setup/style/animate.scss";

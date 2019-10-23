@@ -1,8 +1,9 @@
-import {axios} from "../../../setup/utility/axios";
+import axios from "axios";
 import {api} from "../../../setup/api";
 import {setStore} from "trim-redux";
 import {toast} from "react-toastify";
 import {signingOut} from "./signingOut";
+import {tokenToHeaders} from "../../../setup/utility/tokenToHeaders";
 
 
 /**
@@ -15,7 +16,7 @@ import {signingOut} from "./signingOut";
 export const authentication = (token) => {
     return axios({
         url: api.userDetails,
-        token: token
+        token: tokenToHeaders({}, token)
     })
         .then((response) => {
             // token is valid and user details ready to use

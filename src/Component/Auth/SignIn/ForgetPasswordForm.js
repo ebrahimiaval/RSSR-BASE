@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from "trim-redux";
 import {LOADING_CLASS, regexp} from "../../../setup/constant";
-import {axios} from "../../../setup/utility/axios";
+import axios from "axios";
 import {api} from "../../../setup/api";
 import {route} from "../../../setup/route";
 import {toast} from "react-toastify";

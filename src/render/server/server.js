@@ -4,6 +4,7 @@ import {fetchProvider} from "./fetchProvider";
 import {initialize} from "./initialize";
 import {skeletonFetchProvider} from "./skeletonFetchProvider";
 import {errorLogger} from "../../setup/utility/errorLogger";
+import "../../setup/axiosConfig";
 
 
 export default function serverRenderer() {

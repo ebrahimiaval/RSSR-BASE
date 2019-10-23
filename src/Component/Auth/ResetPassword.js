@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {toast} from 'react-toastify';
-import {axios} from "../../setup/utility/axios";
+import axios from "axios";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
 import {regexp} from "../../setup/constant";

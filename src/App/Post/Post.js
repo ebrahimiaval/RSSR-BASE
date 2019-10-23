@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import Link from "react-router-dom/es/Link";
 import {api} from "../../setup/api";
 import {route} from "../../setup/route";
-import {axios} from "../../setup/utility/axios";
+import axios from "axios";
 import {fetcher} from "../../Partial/fetcher/fetcher";
 import {LOADING_CLASS} from "../../setup/constant";
 

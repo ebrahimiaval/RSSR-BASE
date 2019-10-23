@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {toast} from "react-toastify";
-import {axios} from "../../../setup/utility/axios";
+import axios from "axios";
 import {api} from "../../../setup/api";
 import {signingIn} from "../__action/signingIn";
 import {LOADING_CLASS, regexp} from "../../../setup/constant";
