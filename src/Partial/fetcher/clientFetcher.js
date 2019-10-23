@@ -6,6 +6,7 @@ import {isErrorData} from "../../setup/utility/isErrorData";
 import {responseValidation} from "../../setup/utility/responseValidation";
 import {convertErrorToResponse} from "../../setup/utility/convertErrorToResponse";
 import DefaultErrors from "./DefaultErrors";
+import axios from "axios";
 
 
 /**
@@ -49,21 +50,30 @@ export const clientFetcher = function (TheComponent) {
 
 
 
-        // fetch data and insert to redux
+        // fetch data and insert to redux ::2::
         fetchProvider() {
             this.debugLog(true);
 
-            // ::2::
-            TheComponent
-                .fetch(this.ftechParams)
-                .then((response) => {
-                    // excute 'throw new Error' if response is not valid
-                    responseValidation(response);
+            const request = TheComponent.fetch(this.ftechParams);
+
+            this.cancelRequest = request.cancel;
+
+            request.then((response) => {
+                console.log('fetchProvider then')
+                // excute 'throw new Error' if response is not valid
+                responseValidation(response);
+                setStore(stateName, response.data);
+            })
+                .catch(function (err) {
+                    // ignore canceled request
+                    if (axios.isCancel(err))
+                        return;
+
+                    const response = convertErrorToResponse(err);
                     setStore(stateName, response.data);
                 })
-                .catch(function (error) {
-                    const response = convertErrorToResponse(error);
-                    setStore(stateName, response.data);
+                .finally(() => {
+                    delete this.cancelRequest;
                 })
         }
 
@@ -83,6 +93,12 @@ export const clientFetcher = function (TheComponent) {
         resetDataHolder() {
             const defaultValue = defaultState[stateName];
             setStore(stateName, defaultValue);
+
+            // when try to fetch but last equal fetch was not complited
+            if (this.cancelRequest) {
+                this.cancelRequest();
+                delete this.cancelRequest;
+            }
         }
 
 
@@ -104,7 +120,6 @@ export const clientFetcher = function (TheComponent) {
 
             // get data of new route
             this.fetchProvider();
-
         }
 
 
