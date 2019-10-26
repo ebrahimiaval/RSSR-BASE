@@ -10,7 +10,7 @@ export const tokenToHeaders = function (headers = {}, token) {
     if (token === undefined) {
         token = getStore('localUser').token;
         if (token === null) {
-            console.warn('⛔ axios error: user is invalid. you must check user Authentication before call axios or direct pass token!');
+            console.warn('tokenToHeaders: you need token but user is invalid! if is required check user validation before call axios.');
             return headers;
         }
     }
