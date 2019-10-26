@@ -59,8 +59,6 @@ export const clientFetcher = function (TheComponent) {
             this.cancelRequest = request.cancel;
 
             request.then((response) => {
-                console.log('fetchProvider then')
-                // excute 'throw new Error' if response is not valid
                 responseValidation(response);
                 setStore(stateName, response.data);
             })
