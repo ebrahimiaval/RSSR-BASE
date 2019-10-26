@@ -5,7 +5,7 @@ import {API_DOMAIN} from "./constant";
 axios.defaults.baseURL = API_DOMAIN;
 axios.defaults.timeout = 58000; // fix uncontroled server 502 Error
 
-/************************* template *************************
+/************************* template AXT *************************
  axios({
     url: api,
     method: 'POST',
