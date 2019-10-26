@@ -9,7 +9,7 @@ axios.defaults.timeout = 58000; // fix uncontroled server 502 Error
  axios({
     url: api,
     method: 'POST',
-    headers: headers: tokenToHeaders(),
+    headers: tokenToHeaders(),
     data: {
         test: 'test' // your data params
     }
