@@ -16,7 +16,7 @@ function Post(props) {
     return (
         <div className="container">
             <Helmet title={post !== null ? post.title : 'باگذاری ...'}/>
-            <div className="jumbotron mt-3" id="abc">
+            <div className="jumbotron mt-3">
                 {
                     (post !== null) ? (
                             <Fragment>

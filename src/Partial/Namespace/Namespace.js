@@ -1,19 +1,31 @@
 import PropTypes from 'prop-types';
-import sassNamespace from "../../../sass-namespace";
+import config from "../../../namespace";
 
+let list = {};
+
+function rebuildList() {
+    list = {}
+
+    config.namespace.forEach(function (item, index) {
+        list[item] = config.prefix + item[0] + index
+    })
+}
 
 const Namespace = ({children, namespace}) => {
     const chd = {...children};
     const chdProps = {...chd.props};
 
-    chdProps.id = 'n' + sassNamespace.indexOf(namespace);
+    if (list[namespace] === undefined)
+        rebuildList();
+
+    chdProps.id = list[namespace];
 
     chd.props = chdProps;
     return chd;
-};
+}
 
 Namespace.propTypes = {
-    namespace: PropTypes.oneOf(sassNamespace).isRequired
-};
+    namespace: PropTypes.oneOf(config.namespace).isRequired
+}
 
 export default Namespace;
