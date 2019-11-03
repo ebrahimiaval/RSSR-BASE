@@ -86,7 +86,7 @@ function SignInForm(props) {
                     <label className="custom-control-label" htmlFor={readmeId}>مرا به خاطر بسپار</label>
                 </div>
 
-                <a onClick={() => showForgetPasswordForm()}>
+                <a onClick={showForgetPasswordForm}>
                     <span>فراموشی رمز عبور</span>
                     <i className="icon-angle-right"></i>
                 </a>

@@ -66,7 +66,7 @@ function ForgetPasswordForm(props) {
         <Form onSubmit={submitForgetPassword} className="forget-password-form">
             <div className="d-flex justify-content-between pb-5">
                 <h5>بازیابی رمز عبور</h5>
-                <a className="signin-toggle" onClick={() => showSignInForm()}>بازگشت</a>
+                <a className="signin-toggle" onClick={showSignInForm}>بازگشت</a>
             </div>
             <div className="form-group">
                 <label>ایمیل خود را وارد نمایید</label>
