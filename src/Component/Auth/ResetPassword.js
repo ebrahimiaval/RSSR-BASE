@@ -69,7 +69,7 @@ function ResetPassword(props) {
     return (
         <div id="rsp" className="container-fluid">
             <div className="row">
-                <div className="forget-password-wrap col-md-10 offset-md-7 pt-5">
+                <div className="col-md-10 offset-md-7 pt-5">
                     <h3 className="mb-5">تغییر رمز عبور</h3>
                     {
                         (viewMod === 'form') ?
