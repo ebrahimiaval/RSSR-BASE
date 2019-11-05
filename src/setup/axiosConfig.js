@@ -19,10 +19,11 @@ axios.defaults.timeout = 58000; // fix uncontroled server 502 Error
         return response; // required for fetch()
     })
  .catch(function (err) {
-        // if (err.response.status === 400)
-        //    toast.error('your custom error');
-        // else
-        //    badConnectionAlert('whereOf');
+        // if (err.response && err.response.status === 400)
+        //    return toast.error('your custom error');
+        //
+        // badConnectionAlert('whereOf');
     })
+
 
  ***************************************************************/
