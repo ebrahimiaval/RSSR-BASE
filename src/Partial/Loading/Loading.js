@@ -25,6 +25,7 @@ const Loading = (props) => {
 
     delete copy.props.isLoading;
     delete copy.props.reloading;
+    delete copy.props.children;
 
     copy.children.props = {...copy.childrenProps, ...copy.props}
 
