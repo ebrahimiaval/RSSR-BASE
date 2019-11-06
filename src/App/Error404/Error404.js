@@ -5,7 +5,7 @@ import {connect} from "trim-redux";
 
 function Error404(props) {
     return (
-        <div id="e404" className="container-fluid mb-3">
+        <div className="container-fluid mb-3">
             <Helmet title="متاسفانه صفحه مورد نظر یافت نشد!"/>
             <div className="row">
                 <div className="col-24 text-center">
