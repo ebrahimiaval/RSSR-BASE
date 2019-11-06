@@ -22,6 +22,8 @@ const Namespace = ({namespace, children}) => {
 
     copy.childrenProps.id = list[namespace];
 
+    copy.children.props = copy.childrenProps;
+
     return copy.children;
 }
 
