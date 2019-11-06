@@ -11,17 +11,18 @@ function rebuildList() {
     })
 }
 
-const Namespace = ({children, namespace}) => {
-    const chd = {...children};
-    const chdProps = {...chd.props};
+const Namespace = ({namespace, children}) => {
+    const copy = {
+        children: {...children},
+        childrenProps: {...children.props}
+    }
 
     if (list[namespace] === undefined)
         rebuildList();
 
-    chdProps.id = list[namespace];
+    copy.childrenProps.id = list[namespace];
 
-    chd.props = chdProps;
-    return chd;
+    return copy.children;
 }
 
 Namespace.propTypes = {
