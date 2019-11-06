@@ -14,18 +14,17 @@ const Loading = (props) => {
         if (children.props.className === undefined)
             copy.childrenProps.className = '';
 
-        if (isLoading) {
+        if (isLoading)
             copy.childrenProps.className += " loading-animate";
-            delete copy.props.isLoading;
-        }
 
-        if (reloading) {
+        if (reloading)
             copy.childrenProps.className += " reload-animate";
-            delete copy.props.reloading;
-        }
 
         copy.children.props = copy.childrenProps;
     }
+
+    delete copy.props.isLoading;
+    delete copy.props.reloading;
 
     copy.children.props = {...copy.childrenProps, ...copy.props}
 
