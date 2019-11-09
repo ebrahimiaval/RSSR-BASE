@@ -4,12 +4,12 @@ import {ToastContainer} from 'react-toastify';
 import Router from "../Partial/Router/Router";
 import Menu from "../Component/Menu/Menu";
 import {skeletonClientProvider} from "../setup/utility/skeletonClientProvider";
-import FirstLoading from "../Component/FirstLoading/FirstLoading";
 import {firstSetup} from "../Component/Auth/__action/firstSetup";
 import SignInModal from "../Component/Auth/SignInModal";
 import SignUpModal from "../Component/Auth/SignUpModal";
 import axios from "axios";
 import {api} from "../setup/api";
+import OverLoading from "../Component/OverLoading/OverLoading";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
     return (
         <Fragment>
-            <FirstLoading/>
+            <OverLoading/>
             <Menu/>
             <Router/>
             <Helmet defaultTitle="React Server Side Rendering"/>
