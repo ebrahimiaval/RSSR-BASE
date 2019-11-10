@@ -29,18 +29,27 @@ export const clientFetcher = function (TheComponent) {
 
             this.setParams();
 
-            let needClientFetch;
+            if (this.needFetch())
+                this.fetchProvider()
+            else
+                this.debugLog(false)
+        }
+
+
+
+
+
+        needFetch() {
+            let needFetch = false;
             try {
-                needClientFetch = JSON.stringify(this.props[stateName]) === JSON.stringify(defaultState[stateName])
+                needFetch = JSON.stringify(this.props[stateName]) === JSON.stringify(defaultState[stateName])
             } catch (err) {
                 console.error('⚠ data is not valid.', err);
             }
-
-            if (needClientFetch)
-                this.fetchProvider();
-            else
-                this.debugLog(false);
+            return needFetch
         }
+
+
 
 
 
@@ -86,6 +95,7 @@ export const clientFetcher = function (TheComponent) {
 
 
 
+
         // log fetch type in development environment
         debugLog(inClient) {
             if (JSON.parse(process.env.RSSR_FETCHER_DEBUG))
@@ -109,6 +119,8 @@ export const clientFetcher = function (TheComponent) {
 
 
 
+
+
         shouldComponentUpdate(nextProps, nextState) {
             return this.setParams()
         }
@@ -117,11 +129,10 @@ export const clientFetcher = function (TheComponent) {
 
 
 
-        /**
-         *  update when route update. for example click on like '/post/2' in mounted component with path '/post/1'
-         */
+        //  update when route update. for example click on like '/post/2' in mounted component with path '/post/1'
+        //  needFetch() need for switch between 2 route path with equal component
         componentDidUpdate(prevProps) {
-            if (this.props.location.key === prevProps.location.key)
+            if (this.props.location.key === prevProps.location.key && !this.needFetch())
                 return;
 
             // update match
@@ -137,9 +148,8 @@ export const clientFetcher = function (TheComponent) {
 
 
 
-
+        // then clear state to refetching data on next mounting
         componentWillUnmount() {
-            // then clear state to refetching data on next mounting
             this.resetDataHolder();
         }
 
