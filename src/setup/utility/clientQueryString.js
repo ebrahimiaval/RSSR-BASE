@@ -1,13 +1,14 @@
+import {IS_SERVER} from "../constant";
+
 /**
- * queryStringParams
+ * convert Query string to object
  */
 export const clientQueryString = () => {
     // ignore server render
-    if (typeof window === 'undefined')
+    if (IS_SERVER)
         return;
 
     let params = {};
-
     const queryString = window.location.search;
 
     if (queryString === '')
@@ -15,13 +16,14 @@ export const clientQueryString = () => {
 
     queryString.slice(1).split('&').forEach((item) => {
         const
-            i = item.split('='),
-            key = decodeURIComponent(i[0]),
-            vlaue = (i[1] !== undefined) ? decodeURIComponent(i[1].replace(/(%20)/g, () => ' ')) : '';
+            index = item.indexOf('='),
+            name = item.slice(0, index),
+            value = item.slice(index + 1),
+            key = decodeURIComponent(name),
+            vlaue = (value !== undefined) ? decodeURIComponent(value.replace(/(%20)/g, () => ' ')) : '';
         //
         params[key] = vlaue;
     });
 
     return params;
 }
-

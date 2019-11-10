@@ -27,11 +27,7 @@ export const clientFetcher = function (TheComponent) {
         constructor(props) {
             super(props);
 
-            // params passed to fetch() on the client ::1::
-            this.ftechParams = {
-                match: this.props.match,
-                query: clientQueryString()
-            };
+            this.setParams();
 
             let needClientFetch;
             try {
@@ -44,6 +40,18 @@ export const clientFetcher = function (TheComponent) {
                 this.fetchProvider();
             else
                 this.debugLog(false);
+        }
+
+
+
+        // params passed to fetch() on the client ::1::
+        setParams() {
+            this.ftechParams = {
+                match: this.props.match,
+                query: clientQueryString()
+            }
+
+            return true;
         }
 
 
@@ -97,6 +105,12 @@ export const clientFetcher = function (TheComponent) {
                 this.cancelRequest();
                 delete this.cancelRequest;
             }
+        }
+
+
+
+        shouldComponentUpdate(nextProps, nextState) {
+            return this.setParams()
         }
 
 
