@@ -11,7 +11,7 @@ export const convertErrorToResponse = function (error, req) {
     let response = {
         status: null,
         data: {
-            error: true,
+            isErrorData: true,
             code: error.code
         }
     };

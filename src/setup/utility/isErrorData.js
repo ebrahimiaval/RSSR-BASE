@@ -8,4 +8,4 @@ import {dataType} from "./dataType";
  * @param data {*}
  * @returns {boolean|*}
  */
-export const isErrorData = (data) => dataType(data) === 'object' && data.error
+export const isErrorData = (data) => dataType(data) === 'object' && data.isErrorData
