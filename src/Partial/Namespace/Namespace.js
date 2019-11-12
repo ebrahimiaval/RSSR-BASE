@@ -21,6 +21,7 @@ const Namespace = ({namespace, children}) => {
         rebuildList();
 
     copy.childrenProps.id = list[namespace];
+    copy.childrenProps["data-namespace"] = namespace;
 
     copy.children.props = copy.childrenProps;
 
