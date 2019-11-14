@@ -9,11 +9,11 @@
     width        : 100%;
     //
     @media (min-width : 1500px) {
-        $size : 1500px - 20px; //17px size of scrollbar and 3px to ensure in other browser
+        $size        : 1500px - 20px; //17px size of scrollbar and 3px to ensure in other browser
+        flex         : 0 0 $size;
         margin-left  : auto !important;
         margin-right : auto !important;
         width        : $size;
-        flex         : 0 0 $size;
     }
 }
 

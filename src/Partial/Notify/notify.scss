@@ -6,17 +6,20 @@
         background : none;
         overflow   : hidden;
         position   : relative;
+
         .life-time {
             height   : 3px;
             left     : 0;
             position : absolute;
             top      : 0;
             width    : 100%;
+
             .progress-bar {
                 transition : width 0s ease-out;
                 width      : 0;
             }
         }
+
         // use for trigger close modal
         .hide-close {
             display  : inline-block;
@@ -37,6 +40,7 @@
             font-size   : 18px;
             font-weight : normal;
         }
+
         .close:focus {
             outline : none;
         }
@@ -63,12 +67,13 @@
         & > :not(:first-child) {
             margin : 0;
         }
+
         > div > .btn {
-            font-size     : 15px;
-            font-weight   : 300;
-            margin        : 0 10px;
-            min-width     : 80px;
-            padding       : 3px 10px;
+            font-size   : 15px;
+            font-weight : 300;
+            margin      : 0 10px;
+            min-width   : 80px;
+            padding     : 3px 10px;
         }
     }
 
@@ -78,18 +83,23 @@
     &.theme-default {
         .modal-header {
             background-color : #f2f2f2;
+
             h5 {
                 color : #555555;
             }
+
             .close {
                 color : #777777;
+
                 &:hover, &:focus {
                     color : #555555;
                 }
             }
         }
+
         .life-time {
             background-color : #cccccc;
+
             .progress-bar {
                 background-color : #aaaaaa;
             }
@@ -106,13 +116,16 @@
 
             .close {
                 color : #003a23;
+
                 &:hover, &:focus {
                     color : #002315;
                 }
             }
         }
+
         .life-time {
             background-color : #008f56;
+
             .progress-bar {
                 background-color : #00633b;
             }
@@ -122,18 +135,23 @@
     &.theme-red {
         .modal-header {
             background-color : #f64747;
+
             h5 {
                 color : #ffffff;
             }
+
             .close {
                 color : #670617;
+
                 &:hover, &:focus {
                     color : #1a0308;
                 }
             }
         }
+
         .life-time {
             background-color : #cb3b3b;
+
             .progress-bar {
                 background-color : #a93131;
             }
@@ -143,18 +161,23 @@
     &.theme-yellow {
         .modal-header {
             background-color : #f9bf3b;
+
             h5 {
                 color : #ffffff;
             }
+
             .close {
                 color : #4e3806;
+
                 &:hover, &:focus {
                     color : #312305;
                 }
             }
         }
+
         .life-time {
             background-color : #d6a433;
+
             .progress-bar {
                 background-color : #a77f28;
             }
@@ -164,18 +187,23 @@
     &.theme-orange {
         .modal-header {
             background-color : #ff9900;
+
             h5 {
                 color : #ffffff;
             }
+
             .close {
                 color : #3c2503;
+
                 &:hover, &:focus {
                     color : #291902;
                 }
             }
         }
+
         .life-time {
             background-color : #db8300;
+
             .progress-bar {
                 background-color : #b26b00;
             }
@@ -185,18 +213,23 @@
     &.theme-blue {
         .modal-header {
             background-color : #1e8bc3;
+
             h5 {
                 color : #ffffff;
             }
+
             .close {
                 color : #052d42;
+
                 &:hover, &:focus {
                     color : #031f2e;
                 }
             }
         }
+
         .life-time {
             background-color : #1974a3;
+
             .progress-bar {
                 background-color : #13577a;
             }
@@ -206,18 +239,23 @@
     &.theme-light {
         .modal-header {
             background-color : #ffffff;
+
             h5 {
                 color : #444444;
             }
+
             .close {
                 color : #aaaaaa;
+
                 &:hover, &:focus {
                     color : #555555;
                 }
             }
         }
+
         .life-time {
             background-color : #ffffff;
+
             .progress-bar {
                 background-color : #bbbbbb;
             }
