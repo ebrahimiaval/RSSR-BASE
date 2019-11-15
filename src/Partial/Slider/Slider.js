@@ -1,8 +1,7 @@
 import React, {Component, createRef} from 'react';
-import {IS_BROWSER} from "../../setup/constant";
 import PropTypes from 'prop-types';
 
-const Flickity = IS_BROWSER ? require('flickity') : undefined;
+const Flickity = typeof window !== 'undefined' ? require('flickity') : undefined;
 
 class Slider extends Component {
 
@@ -11,8 +10,12 @@ class Slider extends Component {
         this.wrap = createRef();
     }
 
-    setFlickity() {
-        const {options} = this.props;
+
+    set() {
+        const {options, isDisable} = this.props;
+
+        if (isDisable)
+            return '';
 
         this.flkty = new Flickity(this.wrap.current, options);
 
@@ -20,43 +23,63 @@ class Slider extends Component {
             options.actions(this.flkty, this.wrap.current)
     }
 
+
+    unset() {
+        if (!this.props.isDisable && this.flkty)
+            this.flkty.destroy();
+    }
+
+
     componentDidMount() {
-        this.setFlickity();
+        this.set();
     }
 
 
     shouldComponentUpdate(nextProps, nextState) {
         const listExist = !!this.props.list && !!nextProps.list;
 
+        // ignore update when parent component update but slider list does not changes
         if (listExist && (JSON.stringify(this.props.list) === JSON.stringify(nextProps.list)))
             return false;
 
-        this.flkty.destroy();
+        this.unset()
+
         return true;
     }
 
+
     componentDidUpdate() {
-        this.setFlickity();
+        this.set();
     }
+
 
     componentWillUnmount() {
-        this.flkty.destroy();
+        this.unset()
     }
 
+
     render() {
-        const {className, children} = this.props;
+        const {className, children, elementType} = this.props;
+        const elmType = elementType || 'div';
         return (
-            <div ref={this.wrap} className={className}>
-                {children}
-            </div>
-        );
+            React.createElement(
+                elmType,
+                {
+                    ref: this.wrap,
+                    className: className
+                },
+                [...children]
+            )
+        )
     }
 }
 
 Slider.propTypes = {
     options: PropTypes.object,
+    elementType: PropTypes.string,
     className: PropTypes.string,
-    list: PropTypes.array
+    list: PropTypes.array,
+    isDisable: PropTypes.bool
 };
 
 export default Slider;
