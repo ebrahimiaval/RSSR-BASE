@@ -54,7 +54,7 @@ class Slider extends Component {
 }
 
 Slider.propTypes = {
-    options: PropTypes.object.isRequired,
+    options: PropTypes.object,
     className: PropTypes.string,
     list: PropTypes.array
 };
