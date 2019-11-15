@@ -16,7 +16,7 @@ class Slider extends Component {
 
         this.flkty = new Flickity(this.wrap.current, options);
 
-        if (options.actions)
+        if (options && options.actions)
             options.actions(this.flkty, this.wrap.current)
     }
 
