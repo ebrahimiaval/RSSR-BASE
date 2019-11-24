@@ -20,7 +20,7 @@ function Post(props) {
                 {
                     (post !== null) ? (
                             <Fragment>
-                                <h1>{post.title}</h1>
+                                <h1>{post.title + ' ' + postId}</h1>
                                 <p className="lead">{post.body}</p>
                             </Fragment>
                         )
