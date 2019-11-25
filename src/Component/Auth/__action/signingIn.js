@@ -1,5 +1,5 @@
-import {storage} from "../../../setup/utility/storage";
 import {authentication} from "./authentication";
+import {cookie} from "../../../setup/utility/cookie";
 
 /**
  * signing in user
@@ -12,7 +12,7 @@ import {authentication} from "./authentication";
 export const signingIn = (token, rememberMe) => {
     // set local User Token when rememberMe
     if (rememberMe)
-        storage.set('localUserToken', token);
+        cookie.set('localUserToken', token)
 
     // token validation and get user detail
     return authentication(token)

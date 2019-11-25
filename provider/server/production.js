@@ -3,22 +3,24 @@ require('../setup/evnLoader');
 // define global.FILE_VERSION for dist file version. see render/Index.js template. ::5::
 require('../setup/fileVersion');
 
-const path = require('path');
-const seoOptimization = require('../setup/seoOptimization');
-const rateLimit = require('../setup/rateLimit');
-const express = require('express');
-const serverRendererPath = path.resolve(process.cwd(), './dist/server.js');
-const serverRenderer = require(serverRendererPath).default;
-const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json');
-const stats = require(clientStatsPath);
-const {DIST_PATH, DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant');
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const seoOptimization = require('../setup/seoOptimization')
+const rateLimit = require('../setup/rateLimit')
+const express = require('express')
+const serverRendererPath = path.resolve(process.cwd(), './dist/server.js')
+const serverRenderer = require(serverRendererPath).default
+const clientStatsPath = path.resolve(process.cwd(), './dist/stats.json')
+const stats = require(clientStatsPath)
+const {DIST_PATH, DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant')
 
 
 
 // express app
 const app = express();
 
-
+// cookie
+app.use(cookieParser())
 
 // make bundled final project source files accessable
 app.use(DIST_ROUTE, express.static(DIST_PATH));

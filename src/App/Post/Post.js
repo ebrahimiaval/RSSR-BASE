@@ -6,6 +6,7 @@ import {route} from "../../setup/route";
 import {fetcher} from "../../Partial/fetcher/fetcher";
 import {LOADING_CLASS} from "../../setup/constant";
 import {fetching} from "../../setup/utility/fetching";
+import {tokenToHeaders} from "../../setup/utility/tokenToHeaders";
 
 
 function Post(props) {
@@ -42,9 +43,10 @@ function Post(props) {
 
 
 Post.redux = 'post';
-Post.fetch = ({match}) => {
+Post.fetch = ({match, req}) => {
     return fetching({
-        url: api.post(match.params.postId)
+        url: api.post(match.params.postId),
+        headers: tokenToHeaders({}, undefined, req)
     });
 }
 

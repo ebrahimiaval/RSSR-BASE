@@ -1,5 +1,5 @@
-import {storage} from "../../../setup/utility/storage";
 import {setLocalUserAsGuest} from "./setLocalUserAsGuest";
+import {cookie} from "../../../setup/utility/cookie";
 
 
 /**
@@ -10,8 +10,8 @@ export const signingOut = () => {
     // clear user detail from redux
     setLocalUserAsGuest();
 
-    // clear user token from localstorage
-    storage.set('localUserToken', null);
+    // clear user token cookie
+    cookie.remove('localUserToken')
 
     /**
      * @@@ Clear_USER_Cart

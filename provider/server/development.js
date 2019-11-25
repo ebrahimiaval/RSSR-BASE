@@ -3,16 +3,16 @@ require('../setup/evnLoader');
 // define global.FILE_VERSION for dist file version. see render/Index.js template. ::5::
 require('../setup/fileVersion');
 
-const open = require('open');
-const path = require('path');
-const express = require('express');
-const webpack = require('webpack');
-const config = require('../webpack/development');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const devServerIsReady = require('../setup/devServerIsReady');
-const {DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant');
+const open = require('open')
+const cookieParser = require('cookie-parser')
+const express = require('express')
+const webpack = require('webpack')
+const config = require('../webpack/development')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
+const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
+const devServerIsReady = require('../setup/devServerIsReady')
+const {DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant')
 
 
 
@@ -20,6 +20,9 @@ const {DIST_ROUTE, PUBLIC_PATH} = require('../setup/constant');
 
 // express app
 const app = express();
+
+// cookie
+app.use(cookieParser())
 
 // create webpack compiler
 const compiler = webpack(config);

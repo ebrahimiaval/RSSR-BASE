@@ -1,13 +1,10 @@
-import {storage} from "../../../setup/utility/storage";
 import {setLocalUserAsGuest} from "./setLocalUserAsGuest";
 import {authentication} from "./authentication";
+import {cookie} from "../../../setup/utility/cookie";
 
 export const firstSetup = function () {
-    const token = storage.get('localUserToken');
-    if (token === null) {
-        // Guest user
-        setLocalUserAsGuest();
-    } else {
+    const token = cookie.get('localUserToken');
+    if (token) {
         // Real user
         // when token exist mean in the past one user loged in
         // but does not mean user is a valid user, so token need authentication.
@@ -25,6 +22,9 @@ export const firstSetup = function () {
                 /**
                  * @@@ Clear_USER_Cart
                  */
-            });
+            })
+    } else {
+        // Guest user
+        setLocalUserAsGuest()
     }
 }

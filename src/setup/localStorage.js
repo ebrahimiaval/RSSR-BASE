@@ -41,13 +41,4 @@ export default function () {
         // update available vesion
         storage.set('version', version);
     }
-
-
-
-
-
-    /**
-     * initialise
-     */
-    storage.init('localUserToken', null);
 }
