@@ -45,6 +45,7 @@
         "eslint-plugin-react-hooks": "^2.3.0",
         "expose-loader": "^0.7.5",
         "flickity": "^2.2.1",
+        "flickity-fade": "^1.0.0",
         "history": "^4.7.2",
         "jquery": "^3.4.1",
         "mini-css-extract-plugin": "^0.5.0",

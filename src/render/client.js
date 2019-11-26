@@ -8,7 +8,6 @@ import localStorageSetup from "../setup/localStorage";
 import App from "../App/App";
 import "bootstrap";
 import "../setup/axiosConfig"
-import "flickity/dist/flickity.min.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "../setup/style/bootstrap/bootstrap.scss";
 import "../setup/utility/samplejQueryPlugin";
