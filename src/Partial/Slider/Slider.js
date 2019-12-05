@@ -8,6 +8,8 @@ const Flickity = IS_BROWSER ? require('flickity') : undefined;
 if (IS_BROWSER)
     require('flickity-fade')
 
+
+
 class Slider extends Component {
 
     constructor(props) {
@@ -41,10 +43,10 @@ class Slider extends Component {
 
 
     shouldComponentUpdate(nextProps, nextState) {
-        const listExist = !!this.props.list && !!nextProps.list;
-
         // ignore update when parent component update but slider list does not changes
-        if (listExist && (JSON.stringify(this.props.list) === JSON.stringify(nextProps.list)))
+        const listNotChange = !!this.props.list && !!nextProps.list && (JSON.stringify(this.props.list) === JSON.stringify(nextProps.list))
+        const disableNotChanged = this.props.isDisable  === nextProps.isDisable
+        if (listNotChange && disableNotChanged)
             return false;
 
         this.unset()
@@ -64,14 +66,21 @@ class Slider extends Component {
 
 
     render() {
-        const {className, children, elementType} = this.props;
+        const {children, elementType} = this.props;
         const elmType = elementType || 'div';
+
+        const passProps = {...this.props}
+        delete passProps.options
+        delete passProps.elementType
+        delete passProps.list
+        delete passProps.isDisable
+
         return (
             React.createElement(
                 elmType,
                 {
                     ref: this.wrap,
-                    className: className
+                    ...passProps
                 },
                 [...children]
             )
@@ -82,7 +91,6 @@ class Slider extends Component {
 Slider.propTypes = {
     options: PropTypes.object,
     elementType: PropTypes.string,
-    className: PropTypes.string,
     list: PropTypes.array,
     isDisable: PropTypes.bool
 };
