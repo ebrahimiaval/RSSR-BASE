@@ -19,7 +19,7 @@
         "express": "^4.17.1",
         "express-rate-limit": "^3.5.3",
         "open": "^6.4.0",
-        "serialize-javascript": "^1.9.1"
+        "serialize-javascript": "^2.1.1"
     },
     "devDependencies": {
         "@babel/core": "^7.7.4",
