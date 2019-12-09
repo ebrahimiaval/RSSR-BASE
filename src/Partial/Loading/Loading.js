@@ -15,10 +15,10 @@ const Loading = (props) => {
             copy.childrenProps.className = '';
 
         if (isLoading)
-            copy.childrenProps.className += " loading-animate";
+            copy.childrenProps.className += " loading-animate ";
 
         if (reloading)
-            copy.childrenProps.className += " reload-animate";
+            copy.childrenProps.className += " reload-animate ";
 
         copy.children.props = copy.childrenProps;
     }
