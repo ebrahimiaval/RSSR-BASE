@@ -1,36 +1,49 @@
 import PropTypes from 'prop-types';
 import "./loadingEffect.scss";
 
-const Loading = (props) => {
-    const {isLoading, reloading, children} = props;
-    const copy = {
-        props: {...props},
-        children: {...children},
-        childrenProps: {...children.props}
+
+function setupLoading(theProps, children, classes) {
+    const props = {...theProps}
+    let childrenProps = children.props
+
+    if (props.isLoading || props.reloading) {
+        childrenProps = {...childrenProps}
+        //
+        childrenProps.className = childrenProps.className ? childrenProps.className : ''
+        childrenProps.className += classes
+        //
+        children.props = childrenProps
     }
 
-    // add loading class
-    if (isLoading || reloading) {
-        if (children.props.className === undefined)
-            copy.childrenProps.className = '';
+    // pass down props
+    delete props.isLoading;
+    delete props.reloading;
+    delete props.children;
+    children.props = {...childrenProps, ...props}
 
-        if (isLoading)
-            copy.childrenProps.className += " loading-animate ";
-
-        if (reloading)
-            copy.childrenProps.className += " reload-animate ";
-
-        copy.children.props = copy.childrenProps;
-    }
-
-    delete copy.props.isLoading;
-    delete copy.props.reloading;
-    delete copy.props.children;
-
-    copy.children.props = {...copy.childrenProps, ...copy.props}
-
-    return copy.children;
+    return children
 }
+
+
+
+const Loading = (props) => {
+    const isArray = Array.isArray(props.children);
+    let children = isArray ? [...props.children] : {...props.children};
+
+    let classes = '';
+    classes += props.isLoading ? " loading-animate" : "";
+    classes += props.reloading ? " reload-animate" : "";
+
+    children = isArray ?
+        children.map(function (child) {
+            return setupLoading(props, {...child}, classes)
+        })
+        :
+        setupLoading(props, children, classes)
+
+    return children;
+}
+
 
 Loading.propTypes = {
     isLoading: PropTypes.bool,
