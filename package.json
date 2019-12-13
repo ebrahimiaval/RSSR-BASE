@@ -1,6 +1,6 @@
 {
     "name": "RSSR",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "private": true,
     "scripts": {
         "dev": "NODE_ENV=development node --max_old_space_size=8000 ./provider/server/development.js",
