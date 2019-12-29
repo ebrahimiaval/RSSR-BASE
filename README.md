@@ -1,4 +1,8 @@
-# RSSR 
+## NOTICE: RSSR moved to [RSSR-ORG](https://github.com/rssr-org/RSSR).
+At 2019-12-29 RSSR moved to rssr-org organisation. you can track and clone the latest version of RSSR from there.
+ [see now](https://github.com/rssr-org/RSSR)
+
+## RSSR 
 ✈ welcome to RSSR
 
 ### what is RSSR?
